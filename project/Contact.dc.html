@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 30 30%22%3E%3Ccircle cx=%2215%22 cy=%2215%22 r=%2212%22 fill=%22%23E8B44C%22 stroke=%22%232B2440%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2210.5%22 cy=%2211%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2219%22 cy=%229.5%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2221%22 cy=%2217%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2212.5%22 cy=%2220%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2217%22 cy=%2223%22 r=%221.3%22 fill=%22%232B2440%22/%3E%3C/svg%3E') 4 4,auto;background:#F5EEE5;color:#2B2440;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#6B46E5}a:hover{color:#4C2FB8}a,button{cursor:inherit}
+:focus-visible{outline:3px solid #F1705B;outline-offset:2px;border-radius:4px}
+::selection{background:#E6DEFB}
+h1 .sc-host,h2 .sc-host,h3 .sc-host{display:inline-block}
+</style>
+</helmet>
+<dc-import name="Nav" active="contact" hint-size="100%,72px"></dc-import>
+<main style="max-width:1240px;margin:0 auto;padding:88px 24px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:start">
+  <section aria-label="Book a call">
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,6vw,72px);line-height:1.04;letter-spacing:-0.03em;margin:0;text-wrap:balance">Let&rsquo;s <dc-import name="Squiggle" word="talk" style="display:inline-block" hint-size="4ch,1em"></dc-import> about your content.</h1>
+    <p style="font-size:19px;line-height:1.6;color:#514A66;max-width:52ch;margin:24px 0 0">One call, thirty minutes. We want to learn what you have in place, what you&rsquo;re missing, and where you&rsquo;re headed with content marketing. If we can help, we&rsquo;ll say how. If we can&rsquo;t, we&rsquo;ll say that too.</p>
+    <a href="https://calendly.com/theotherguyss/let-s-talk-about-your-content-marketing" style="display:inline-block;margin-top:28px;text-decoration:none;font-weight:700;font-size:18px;padding:16px 34px;border-radius:999px;background:#F1705B;color:#2B2440;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440" style-hover="background:#E85F48">Book a meeting with us &rarr;</a>
+    <p style="font-size:16px;color:#514A66;margin:20px 0 0">Calendars are personal. If you&rsquo;d rather write first, we read everything at <a href="mailto:hello@deotherguys.com">hello@deotherguys.com</a>.</p>
+    <div style="margin-top:40px;border-top:1px solid rgba(43,36,64,0.14);padding-top:28px;display:flex;flex-direction:column;gap:16px;max-width:52ch">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784">WHAT THE CALL COVERS</span>
+      <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#6B46E5;flex:none">01</span><p style="margin:0;font-size:16px;line-height:1.6;color:#514A66">Where your GTM motion stands and what content has done for it so far.</p></div>
+      <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#6B46E5;flex:none">02</span><p style="margin:0;font-size:16px;line-height:1.6;color:#514A66">What buyer-first content and AI search visibility could do for your pipeline.</p></div>
+      <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#6B46E5;flex:none">03</span><p style="margin:0;font-size:16px;line-height:1.6;color:#514A66">If it fits, a concrete first sprint with dates on it. No proposal theater.</p></div>
+    </div>
+  </section>
+  <aside aria-label="The Other Guys" style="display:flex;flex-direction:column;gap:14px">
+    <div style="width:100%;aspect-ratio:4/5;max-width:520px"><image-slot id="photo-both" src="assets/tim-and-nelson.png" shape="rounded" radius="20" placeholder="Photo of Tim and Nelson" alt="Tim and Nelson, the two partners behind The Other Guys"></image-slot></div>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#6E6784;margin:0">THE ENTIRE COMPANY, PICTURED.</p>
+  </aside>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+</body>
+</html>

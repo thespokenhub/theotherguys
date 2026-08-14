@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 30 30%22%3E%3Ccircle cx=%2215%22 cy=%2215%22 r=%2212%22 fill=%22%23E8B44C%22 stroke=%22%232B2440%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2210.5%22 cy=%2211%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2219%22 cy=%229.5%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2221%22 cy=%2217%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2212.5%22 cy=%2220%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2217%22 cy=%2223%22 r=%221.3%22 fill=%22%232B2440%22/%3E%3C/svg%3E') 4 4,auto;background:#F5EEE5;color:#2B2440;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#6B46E5}a:hover{color:#4C2FB8}a,button{cursor:inherit}
+:focus-visible{outline:3px solid #F1705B;outline-offset:2px;border-radius:4px}
+::selection{background:#E6DEFB}
+h1 .sc-host,h2 .sc-host,h3 .sc-host{display:inline-block}
+</style>
+</helmet>
+<dc-import name="Nav" active="blog" hint-size="100%,102px"></dc-import>
+<main>
+  <section style="max-width:900px;margin:0 auto;padding:72px 24px 0">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.1em;color:#6E6784;margin:0"><a href="Blog.dc.html" style="color:#6B46E5">BLOG</a> / PILLAR {{ no }} &middot; {{ labelCaps }}</p>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(38px,6vw,72px);line-height:1.05;letter-spacing:-0.03em;margin:20px 0 0;text-wrap:balance">{{ t1 }}<dc-import name="Squiggle" word="{{ word }}" style="display:inline-block" hint-size="6ch,1em"></dc-import>{{ t2 }}</h1>
+    <p style="font-size:19px;line-height:1.65;color:#514A66;max-width:58ch;margin:24px 0 0">{{ desc }}</p>
+  </section>
+  <section aria-label="Posts in this pillar" style="max-width:900px;margin:48px auto 0;padding:0 24px">
+    <div style="border-top:2px solid #2B2440;display:flex;flex-direction:column">
+      <sc-for list="{{ rows }}" as="p" hint-placeholder-count="4">
+        <article style="display:flex;gap:20px;align-items:flex-start;padding:24px 8px;border-bottom:1px solid rgba(43,36,64,0.16);flex-wrap:wrap" style-hover="background:#FBF6EF">
+          <span aria-hidden="true" style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#F1705B;flex:none;width:34px">{{ p.num }}</span>
+          <div style="width:116px;aspect-ratio:4/3;flex:none;transform:{{ p.rot }}"><image-slot id="{{ p.slot }}" shape="rounded" radius="10" placeholder="Pencil sketch" alt="{{ p.ill }}"></image-slot></div>
+          <div style="flex:1;min-width:240px">
+            <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;letter-spacing:-0.015em;line-height:1.2;margin:0"><a href="Blog-Post.dc.html" style="color:#2B2440;text-decoration:none" style-hover="color:#6B46E5">{{ p.title }}</a></h2>
+            <p style="font-size:15px;line-height:1.55;color:#6E6784;margin:6px 0 0;max-width:64ch">{{ p.blurb }}</p>
+          </div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E6784;flex:none">{{ p.meta }}</span>
+        </article>
+      </sc-for>
+    </div>
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;padding:56px 20px">
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;margin:0">Nothing filed here yet.</p>
+        <p style="font-size:17px;color:#514A66;margin:10px 0 0">The kitchen&rsquo;s warming up.</p>
+      </div>
+    </sc-if>
+  </section>
+  <section aria-label="Other pillars" style="max-width:900px;margin:56px auto 0;padding:0 24px 100px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#6E6784">MORE PILLARS:</span>
+    <sc-for list="{{ others }}" as="o" hint-placeholder-count="5">
+      <a href="{{ o.href }}" style="font-weight:600;font-size:15px;padding:9px 18px;border-radius:999px;border:2px solid #6B46E5;color:#6B46E5;text-decoration:none" style-hover="background:#E6DEFB">{{ o.label }}</a>
+    </sc-for>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { pillars: null, posts: [] };
+  componentDidMount() {
+    import('./posts.js').then((m) => this.setState({ pillars: m.PILLARS, posts: m.POSTS }));
+  }
+  renderVals() {
+    const P = this.state.pillars || {};
+    const keys = Object.keys(P);
+    let key = new URLSearchParams(location.search).get('p');
+    if (!P[key]) key = keys[0] || '';
+    const pil = P[key] || {};
+    const mine = this.state.posts.filter((x) => x.pillar === key);
+    return {
+      no: pil.no || '', labelCaps: (pil.label || '').toUpperCase(),
+      t1: pil.t1 || '', word: pil.word || '', t2: pil.t2 || '', desc: pil.desc || '',
+      rows: mine.map((x, i) => ({
+        ...x, num: String(i + 1).padStart(2, '0'), slot: 'thumb-' + x.id,
+        rot: i % 2 ? 'rotate(1.5deg)' : 'rotate(-1.5deg)',
+        meta: (x.type === 'report' ? '\u2b1b REPORT \u00b7 ' : '') + x.date.toUpperCase() + ' \u00b7 ' + x.mins + ' MIN'
+      })),
+      isEmpty: keys.length > 0 && mine.length === 0,
+      others: keys.filter((k) => k !== key).map((k) => P[k])
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 30 30%22%3E%3Ccircle cx=%2215%22 cy=%2215%22 r=%2212%22 fill=%22%23E8B44C%22 stroke=%22%232B2440%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2210.5%22 cy=%2211%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2219%22 cy=%229.5%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2221%22 cy=%2217%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2212.5%22 cy=%2220%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2217%22 cy=%2223%22 r=%221.3%22 fill=%22%232B2440%22/%3E%3C/svg%3E') 4 4,auto;background:#F5EEE5;color:#2B2440;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#6B46E5}a:hover{color:#4C2FB8}a,button{cursor:inherit}
+:focus-visible{outline:3px solid #F1705B;outline-offset:2px;border-radius:4px}
+::selection{background:#E6DEFB}
+h1 .sc-host,h2 .sc-host,h3 .sc-host{display:inline-block}
+@keyframes tog-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@property --tog-a{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes tog-orbit{to{--tog-a:360deg}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important}}
+</style>
+</helmet>
+<dc-import name="Nav" active="home" hint-size="100%,102px"></dc-import>
+<main>
+  <section aria-label="Intro" style="background:#6B46E5;color:#FBF6EF;border-bottom:2px solid #2B2440;margin-top:-92px;padding:170px 24px 110px">
+    <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
+      <span style="position:relative;display:inline-block;border-radius:999px;padding:2px">
+        <span aria-hidden="true" style="position:absolute;inset:0;border-radius:999px;background:conic-gradient(from var(--tog-a),transparent 0deg,transparent 260deg,#FBF6EF 320deg,#E8B44C 340deg,transparent 360deg);animation:tog-orbit 2.6s linear 0.5s 3"></span>
+        <span style="position:relative;display:block;background:#6B46E5;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.14em;border:1.5px solid rgba(251,246,239,0.5);color:#FBF6EF;padding:8px 16px;border-radius:999px">B2B SAAS CONTENT STUDIO</span>
+      </span>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(42px,7vw,88px);line-height:1.02;letter-spacing:-0.03em;margin:0;max-width:16ch;text-wrap:balance">Get content so <dc-import name="Squiggle" word="good" style="display:inline-block" hint-size="4ch,1em"></dc-import> you don&rsquo;t realize it&rsquo;s marketing.</h1>
+      <p style="font-size:clamp(19px,2.3vw,24px);line-height:1.5;max-width:44ch;margin:0;color:rgba(251,246,239,0.9);font-style:italic">We make content for the buyer, and for the machines that now recommend you.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:8px">
+        <a href="About.dc.html" style="text-decoration:none;font-weight:700;font-size:17px;padding:15px 30px;border-radius:999px;background:#F1705B;color:#2B2440;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440" style-hover="background:#E85F48">What&rsquo;s that about?</a>
+        <a href="Case-Studies.dc.html" style="text-decoration:none;font-weight:700;font-size:17px;padding:15px 30px;border-radius:999px;background:transparent;color:#FBF6EF;border:2px solid #FBF6EF" style-hover="background:rgba(251,246,239,0.15)">I want to see more!</a>
+      </div>
+      <a href="Compare.dc.html" style="color:rgba(251,246,239,0.85);font-size:15px;text-decoration:underline;text-underline-offset:4px" style-hover="color:#FBF6EF">Already talking to another agency? Compare us. We dare you.</a>
+    </div>
+  </section>
+  <section aria-label="Clients" style="max-width:1000px;margin:-44px auto 0;padding:0 24px;position:relative;z-index:2">
+    <div style="background:#FBF6EF;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:999px;padding:16px 26px;display:flex;align-items:center;gap:24px;overflow:hidden">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#6E6784;flex:none">TRUSTED BY TEAMS AT &rarr;</span>
+      <div style="overflow:hidden;flex:1;mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent)">
+        <div style="display:flex;gap:52px;width:max-content;animation:tog-marquee 26s linear infinite;align-items:center">
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">Synthesia</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">ClickUp</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">Sprig</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">iGotAnOffer</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">Roofr</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">Synthesia</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">ClickUp</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">Sprig</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">iGotAnOffer</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.02em;white-space:nowrap">Roofr</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section aria-label="Why these notes" style="max-width:720px;margin:80px auto 0;padding:0 24px;text-align:center">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784">STUCK TO THE FRIDGE, LIKE ALL GOOD REPORT CARDS</span>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);letter-spacing:-0.02em;line-height:1.08;margin:14px 0 0;text-wrap:balance">Don&rsquo;t take our word for it.</h2>
+    <p style="font-size:18px;line-height:1.6;color:#514A66;margin:14px 0 0">Three clients, three before-and-afters. Pull a note off the wall.</p>
+  </section>
+  <section aria-label="Results" style="max-width:1100px;margin:8px auto 0;padding:0 24px;display:flex;gap:32px;flex-wrap:wrap;justify-content:center;align-items:flex-start">
+    <a href="Case-iGotAnOffer.dc.html" style="text-decoration:none;color:#2B2440;width:270px;background:#F1705B;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:22px;transform:rotate(-2.4deg);position:relative;margin-top:26px" style-hover="transform:rotate(-2.4deg) translateY(-4px)">
+      <span aria-hidden="true" style="position:absolute;top:-13px;left:38%;width:84px;height:24px;background:rgba(251,246,239,0.65);border:1px solid rgba(43,36,64,0.25);transform:rotate(2deg)"></span>
+      <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:42px;line-height:1;margin:0">+64%</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;margin:10px 0 0">ORGANIC SIGNUPS &middot; IGOTANOFFER</p>
+      <p style="font-size:14px;font-weight:700;margin:14px 0 0;text-decoration:underline;text-underline-offset:3px">Read the story</p>
+    </a>
+    <a href="Case-Synthesia.dc.html" style="text-decoration:none;color:#2B2440;width:270px;background:#E6DEFB;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:22px;transform:rotate(1.6deg);position:relative;margin-top:44px" style-hover="transform:rotate(1.6deg) translateY(-4px)">
+      <span aria-hidden="true" style="position:absolute;top:-13px;left:34%;width:84px;height:24px;background:rgba(241,112,91,0.6);border:1px solid rgba(43,36,64,0.25);transform:rotate(-2deg)"></span>
+      <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:42px;line-height:1;margin:0">+41%</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;margin:10px 0 0">DEMO REQUESTS &middot; SYNTHESIA</p>
+      <p style="font-size:14px;font-weight:700;margin:14px 0 0;text-decoration:underline;text-underline-offset:3px">Read the story</p>
+    </a>
+    <a href="Case-ClickUp.dc.html" style="text-decoration:none;color:#2B2440;width:270px;background:#FBF6EF;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:22px;transform:rotate(-1.2deg);position:relative;margin-top:32px" style-hover="transform:rotate(-1.2deg) translateY(-4px)">
+      <span aria-hidden="true" style="position:absolute;top:-13px;left:40%;width:84px;height:24px;background:rgba(107,70,229,0.45);border:1px solid rgba(43,36,64,0.25);transform:rotate(3deg)"></span>
+      <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:42px;line-height:1;margin:0">&minus;40%</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;margin:10px 0 0">PUBLISHING VOLUME, ORGANIC UP &middot; CLICKUP</p>
+      <p style="font-size:14px;font-weight:700;margin:14px 0 0;text-decoration:underline;text-underline-offset:3px">Read the story</p>
+    </a>
+  </section>
+  <section id="menu" aria-label="What we do" style="max-width:1000px;margin:96px auto 0;padding:0 24px">
+    <div style="background:#2B2440;color:#F5EEE5;border:2px solid #2B2440;box-shadow:6px 6px 0 #F1705B;border-radius:20px;padding:clamp(24px,4.5vw,52px)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:2px dashed rgba(245,238,229,0.3);padding-bottom:18px">
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,44px);letter-spacing:-0.02em;margin:0">The menu</h2>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;color:rgba(245,238,229,0.6)">NINE THINGS WE COOK &middot; PICK ONE TO SEE THE RECIPE</span>
+      </div>
+      <div style="display:flex;flex-direction:column;margin-top:8px">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="9">
+          <a href="{{ s.href }}" style="text-decoration:none;color:#F5EEE5;display:flex;align-items:baseline;gap:16px;padding:16px 10px;border-bottom:1px solid rgba(245,238,229,0.14);border-radius:10px" style-hover="background:rgba(245,238,229,0.08)">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#F1705B;flex:none;width:26px">{{ s.no }}</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(19px,2.4vw,25px);letter-spacing:-0.015em;flex:none">{{ s.name }}</span>
+            <span aria-hidden="true" style="flex:1;border-bottom:2px dotted rgba(245,238,229,0.25);transform:translateY(-5px);min-width:24px"></span>
+            <span style="font-size:15px;color:rgba(245,238,229,0.65);font-style:italic;text-align:right">{{ s.quip }}</span>
+            <span aria-hidden="true" style="color:#E8B44C;font-weight:700;flex:none">&rarr;</span>
+          </a>
+        </sc-for>
+      </div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;color:rgba(245,238,229,0.5);margin:18px 0 0">ALL OF IT WRITTEN BY THE TWO PEOPLE YOU&rsquo;LL MEET &middot; <a href="About.dc.html" style="color:#E8B44C">MEET THEM</a></p>
+    </div>
+  </section>
+  <section aria-label="Exits" style="max-width:1000px;margin:96px auto 0;padding:0 24px 110px;text-align:center">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784">THAT&rsquo;S THE WHOLE HOMEPAGE. NO FOOTER. FOOTERS ARE WHERE CLICKS GO TO DIE.</span>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,52px);letter-spacing:-0.02em;line-height:1.06;margin:14px 0 0">Pick an exit.</h2>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:32px;align-items:stretch">
+      <a href="Case-Studies.dc.html" style="text-decoration:none;color:#2B2440;background:#FBF6EF;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:20px 24px;width:210px;text-align:left;transform:rotate(-1.2deg)" style-hover="transform:rotate(-1.2deg) translate(-2px,-2px);box-shadow:7px 7px 0 #2B2440">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#6B46E5">EXIT A &nearr;</span>
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;margin:8px 0 4px">See the receipts</p>
+        <p style="font-size:14px;color:#6E6784;margin:0">Case studies, numbers attached.</p>
+      </a>
+      <a href="Compare.dc.html" style="text-decoration:none;color:#2B2440;background:#E6DEFB;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:20px 24px;width:210px;text-align:left;transform:rotate(0.9deg)" style-hover="transform:rotate(0.9deg) translate(-2px,-2px);box-shadow:7px 7px 0 #2B2440">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#6B46E5">EXIT B &rarr;</span>
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;margin:8px 0 4px">Size us up</p>
+        <p style="font-size:14px;color:#514A66;margin:0">Compare us to whoever you&rsquo;re considering.</p>
+      </a>
+      <a href="Blog.dc.html" style="text-decoration:none;color:#2B2440;background:#FBF6EF;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:20px 24px;width:210px;text-align:left;transform:rotate(-0.7deg)" style-hover="transform:rotate(-0.7deg) translate(-2px,-2px);box-shadow:7px 7px 0 #2B2440">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#6B46E5">EXIT C &searr;</span>
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;margin:8px 0 4px">Read how we think</p>
+        <p style="font-size:14px;color:#6E6784;margin:0">The blog. Essays, teardowns, reports.</p>
+      </a>
+      <a href="https://calendly.com/theotherguyss/let-s-talk-about-your-content-marketing" style="text-decoration:none;color:#FBF6EF;background:#6B46E5;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:20px 24px;width:210px;text-align:left;transform:rotate(1.4deg)" style-hover="transform:rotate(1.4deg) translate(-2px,-2px);box-shadow:7px 7px 0 #2B2440">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#E8B44C">MAIN EXIT &uarr;</span>
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;margin:8px 0 4px">Skip the tour</p>
+        <p style="font-size:14px;color:rgba(251,246,239,0.8);margin:0">Book a call with Tim &amp; Nelson.</p>
+      </a>
+    </div>
+  </section>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { services: [] };
+  componentDidMount() {
+    import('./services.js').then((m) => this.setState({ services: m.SERVICES }, () => {
+      if (location.hash === '#menu') {
+        const el = document.getElementById('menu');
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 130 });
+      }
+    }));
+  }
+  renderVals() {
+    return { services: this.state.services.map((s) => ({ ...s, href: 'Service.dc.html?s=' + s.slug })) };
+  }
+}
+
+</script>
+</body>
+</html>

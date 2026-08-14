@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 30 30%22%3E%3Ccircle cx=%2215%22 cy=%2215%22 r=%2212%22 fill=%22%23E8B44C%22 stroke=%22%232B2440%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2210.5%22 cy=%2211%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2219%22 cy=%229.5%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2221%22 cy=%2217%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2212.5%22 cy=%2220%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2217%22 cy=%2223%22 r=%221.3%22 fill=%22%232B2440%22/%3E%3C/svg%3E') 4 4,auto;background:#F5EEE5;color:#2B2440;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#6B46E5}a:hover{color:#4C2FB8}a,button{cursor:inherit}
+:focus-visible{outline:3px solid #F1705B;outline-offset:2px;border-radius:4px}
+::selection{background:#E6DEFB}
+h1 .sc-host,h2 .sc-host,h3 .sc-host{display:inline-block}
+</style>
+</helmet>
+<dc-import name="Nav" active="compare" hint-size="100%,102px"></dc-import>
+<main>
+  <section style="max-width:900px;margin:0 auto;padding:64px 24px 0;text-align:center">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784">WE&rsquo;LL EVEN HOLD THE DOOR OPEN</span>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(38px,6vw,72px);line-height:1.05;letter-spacing:-0.03em;margin:14px 0 0;text-wrap:balance">Go on, <dc-import name="Squiggle" word="compare&nbsp;us." style="display:inline-block" hint-size="10ch,1em"></dc-import></h1>
+    <p style="font-size:18px;line-height:1.6;color:#514A66;max-width:52ch;margin:18px auto 0">Pick who you&rsquo;re considering instead of us. We&rsquo;ll tell you the honest difference, including when they&rsquo;re the better call. Yes, really.</p>
+  </section>
+  <section aria-label="Pick a category" style="max-width:1000px;margin:44px auto 0;padding:0 24px">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784;margin:0 0 14px">STEP 1 &middot; WHO ELSE IS ON YOUR SHORTLIST?</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+        <button type="button" onClick="{{ c.onPick }}" aria-pressed="{{ c.selected }}" style="cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;padding:14px 22px;border-radius:14px;border:2px solid #2B2440;background:{{ c.bg }};color:{{ c.fg }};box-shadow:4px 4px 0 #2B2440;transform:rotate({{ c.rot }})" style-hover="transform:translate(-2px,-2px);box-shadow:6px 6px 0 #2B2440">{{ c.label }}</button>
+      </sc-for>
+    </div>
+  </section>
+  <sc-if value="{{ showComps }}" hint-placeholder-val="{{ false }}">
+    <section aria-label="Pick a competitor" style="max-width:1000px;margin:40px auto 0;padding:0 24px">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784;margin:0 0 14px">STEP 2 &middot; WHICH ONE? (YOU&rsquo;LL RECOGNIZE THE TYPE)</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+        <sc-for list="{{ comps }}" as="p" hint-placeholder-count="4">
+          <button type="button" onClick="{{ p.onPick }}" aria-pressed="{{ p.selected }}" style="cursor:pointer;text-align:left;font-family:inherit;padding:18px 20px;border-radius:14px;border:2px solid #2B2440;background:{{ p.bg }};color:#2B2440;box-shadow:4px 4px 0 #2B2440" style-hover="transform:translate(-2px,-2px);box-shadow:6px 6px 0 #2B2440">
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;display:block">{{ p.name }}</span>
+            <span style="font-size:14px;color:#514A66;display:block;margin-top:4px">{{ p.tag }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+  <sc-if value="{{ showTape }}" hint-placeholder-val="{{ false }}">
+    <section aria-label="The tale of the tape" style="max-width:1000px;margin:56px auto 0;padding:0 24px">
+      <div style="background:#2B2440;color:#F5EEE5;border:2px solid #2B2440;box-shadow:6px 6px 0 #F1705B;border-radius:20px;padding:clamp(22px,4vw,44px)">
+        <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;text-align:center">
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(22px,3vw,32px);letter-spacing:-0.02em">{{ compName }}</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#E8B44C;border:2px solid #E8B44C;border-radius:999px;padding:6px 12px;transform:rotate(-4deg)">VS</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(22px,3vw,32px);letter-spacing:-0.02em;color:#E6DEFB">The Other Guys</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:30px">
+          <sc-for list="{{ rounds }}" as="r" hint-placeholder-count="4">
+            <div style="border:1px solid rgba(245,238,229,0.2);border-radius:14px;padding:18px 20px">
+              <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#F1705B;margin:0">ROUND {{ r.no }} &middot; {{ r.label }}</p>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:10px">
+                <p style="margin:0;font-size:15px;line-height:1.55;color:rgba(245,238,229,0.75)"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:rgba(245,238,229,0.5);display:block;margin-bottom:4px">THEM</span>{{ r.them }}</p>
+                <p style="margin:0;font-size:15px;line-height:1.55;color:#F5EEE5;font-weight:600"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#E8B44C;display:block;margin-bottom:4px">US</span>{{ r.us }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border:2px dashed rgba(232,180,76,0.5);border-radius:14px;padding:18px 20px;margin-top:14px">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#E8B44C;margin:0">FULL HONESTY &middot; WHEN THEY&rsquo;RE THE RIGHT CALL</p>
+          <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:rgba(245,238,229,0.85)">{{ pickThem }}</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:36px">
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(22px,3vw,32px);letter-spacing:-0.02em;margin:0">Still standing? Good, so are we.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:20px">
+          <a href="https://calendly.com/theotherguyss/let-s-talk-about-your-content-marketing" style="text-decoration:none;font-weight:700;font-size:16px;padding:14px 28px;border-radius:999px;background:#F1705B;color:#2B2440;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440" style-hover="background:#E85F48">Book the call</a>
+          <a href="Case-Studies.dc.html" style="text-decoration:none;font-weight:700;font-size:16px;padding:14px 28px;border-radius:999px;background:transparent;color:#6B46E5;border:2px solid #6B46E5" style-hover="background:#E6DEFB">Check our receipts first</a>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+  <div style="height:100px"></div>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cat: null, comp: null };
+  DATA = {
+    seo: { label: 'SEO agencies', comps: [
+      { key: 'volume', name: 'The Volume Shop', tag: '40 posts a month, guaranteed', them: { who: 'A rotating bench of freelancers you never meet, briefed by a spreadsheet.', clients: 'Dozens. You\u2019re a row in the delivery tracker.', ai: 'Quietly AI-generating half of it since 2024.', buying: 'Output. Sheer, undifferentiated tonnage.', pick: 'If you genuinely need 500 near-identical location pages, a volume shop will grind them out cheaper than we ever could. That\u2019s a factory job, and they own the factory.' } },
+      { key: 'enterprise', name: 'The Enterprise Retainer', tag: 'Slide decks, SLAs, quarterly reviews', them: { who: 'A strategist presents, an account manager translates, someone junior writes.', clients: 'Many. You get the B-team unless you\u2019re the biggest logo.', ai: 'A \u201cproprietary AI workflow\u201d slide in every QBR.', buying: 'Process, reporting, and someone to blame.', pick: 'If procurement requires three references, an MSA, and a named account director, they\u2019re built for that maze and we are not. Big-company plumbing is a real service.' } },
+      { key: 'boutique', name: 'The Boutique That\u2019s Genuinely Good', tag: 'Small, senior, picky. Sound familiar?', them: { who: 'Senior people who write. Honestly, the good ones exist and we respect them.', clients: 'A handful, like us.', ai: 'Thoughtful about it, like us.', buying: 'Roughly what you\u2019d buy from us, with a different accent.', pick: 'If their niche is your niche, say a boutique that only does fintech SEO and you\u2019re a fintech, take the specialist. We\u2019d rather lose you to good work than win you into worse.' } },
+      { key: 'links', name: 'The Link Builders', tag: '\u201cDR 70+ placements, white hat, promise\u201d', them: { who: 'Outreach VAs sending 2,000 emails that start with \u201cI loved your recent article.\u201d', clients: 'As many as the inbox tool allows.', ai: 'The emails? Oh, entirely.', buying: 'Backlinks of wildly variable hygiene.', pick: 'If your content is already excellent and genuinely just needs authority, a careful link team can help. Audit their placements first. All of them.' } },
+      { key: 'aipowered', name: 'The AI-Powered SEO Startup', tag: '\u201c10x your content velocity\u201d', them: { who: 'A model, a template, and one human \u201ceditor\u201d per 40 drafts.', clients: 'Unlimited. That\u2019s the pitch.', ai: 'It\u2019s the whole product.', buying: 'Speed. Words per dollar, optimized hard.', pick: 'If you need placeholder coverage on 300 long-tail queries while you build real content, it\u2019s a rational stopgap. Just don\u2019t point it at the queries your buyers ask.' } }
+    ] },
+    design: { label: 'Design agencies', comps: [
+      { key: 'award', name: 'The Award-Winning Studio', tag: 'Gorgeous site, three case studies, all rebrands', them: { who: 'Brilliant designers. The words arrive last, from whoever\u2019s free.', clients: 'A few big ones at a time.', ai: 'Midjourney moodboards, sure. Writing? Not their fight.', buying: 'A beautiful container. Content sold separately.', pick: 'If your problem is the brand and the site itself, hire them, seriously. Then hire someone who writes, because \u201clorem ipsum\u201d ships more often than anyone admits.' } },
+      { key: 'sprint', name: 'The Brand Sprint Shop', tag: 'New identity in 4 weeks', them: { who: 'A tight crew running a fixed playbook: workshop, moodboard, reveal.', clients: 'Back to back. The sprint ends and so does the relationship.', ai: 'Wherever it speeds the sprint.', buying: 'A logo, a palette, a deck. Momentum, briefly.', pick: 'Pre-seed and need to look real by demo day? The sprint shop is exactly right. Content strategy would be premature; take the logo and run.' } },
+      { key: 'webflow', name: 'The Webflow Partner Agency', tag: 'Sites that ship fast and score 98 on Lighthouse', them: { who: 'Developers and designers who build superbly and write \u201cconversion copy\u201d reluctantly.', clients: 'Project-based, many at once.', ai: 'For alt text and placeholder copy, absolutely.', buying: 'A fast, maintainable site. Empty, but fast.', pick: 'When the bottleneck is shipping the website, take them. We\u2019ll happily fill the pages after; that handoff works great.' } },
+      { key: 'fullservice', name: 'The Full-Service Creative Agency', tag: '\u201cWe do everything\u201d and mean it', them: { who: 'Specialists in everything, which for your budget tier means juniors in everything.', clients: 'A pyramid of them. Guess your layer.', ai: 'A capabilities deck about it, at minimum.', buying: 'One throat to choke, many hands in the retainer.', pick: 'If you truly need TV, OOH, social, web, and PR coordinated under one P&L, full-service integration is a real advantage we don\u2019t offer.' } }
+    ] },
+    ai: { label: 'AI content platforms', comps: [
+      { key: 'oneclick', name: 'The One-Click Blog Machine', tag: 'Keyword in, \u201cSEO-optimized article\u201d out', them: { who: 'A fine-tuned model and a very confident landing page.', clients: 'Self-serve. You and everyone targeting your keywords.', ai: 'All of it. That\u2019s the product and the problem.', buying: 'The same article your competitor generates on Tuesday.', pick: 'For internal docs, meta descriptions, or genuinely disposable text, honestly, fine. Just don\u2019t serve it to the buyer, and never to the machines choosing citations.' } },
+      { key: 'humanloop', name: 'The AI-With-Human-Editors Platform', tag: '\u201cAI speed, human quality\u201d', them: { who: 'A model drafts, a marketplace editor gets 20 minutes to fix it.', clients: 'Thousands, by design.', ai: 'The engine. The human is the seatbelt.', buying: 'Grammatical, plausible, forgettable content at scale.', pick: 'Mid-funnel glossary pages at volume with a real editor of your own on top? Workable. It\u2019s a materials supplier, not a builder.' } },
+      { key: 'suite', name: 'The Enterprise AI Content Suite', tag: 'Brand voice, workflows, 47 integrations', them: { who: 'Software. Your team still does the thinking, now with more dashboards.', clients: 'It\u2019s SaaS, so all of them.', ai: 'Yes, plus governance features to feel safe about it.', buying: 'Tooling. Useful if, and only if, you have the writers.', pick: 'If you have a strong in-house team drowning in production mechanics, the suite genuinely helps them. It\u2019s a tool for writers, not a replacement. We sometimes recommend one.' } },
+      { key: 'diy', name: 'The DIY Stack (ChatGPT + You)', tag: '$20/month and a free evening', them: { who: 'You, at 11pm, prompting.', clients: 'Just you. Full attention, zero experience.', ai: 'Obviously.', buying: 'Your own time, spent on a craft you\u2019re learning live.', pick: 'Pre-revenue and every dollar counts? This is the right call and we mean that. Read our blog, steal our playbook, come back when content is worth real money to you.' } }
+    ] },
+    freelance: { label: 'A freelancer', comps: [
+      { key: 'freelancer', name: 'A Great Freelance Writer', tag: 'The good ones are genuinely good', them: { who: 'One talented person. When they\u2019re available. Until they\u2019re not.', clients: 'Five to ten, juggled heroically.', ai: 'Depends entirely on the person. Ask to watch them work.', buying: 'Words, usually good ones. Strategy, distribution, and continuity are your job.', pick: 'One-off pieces, an overflow month, a domain where they\u2019re the known expert: a great freelancer wins on price and speed. We keep a list of ones we\u2019d vouch for. Ask us.' } }
+    ] },
+    inhouse: { label: 'An in-house hire', comps: [
+      { key: 'hire', name: 'Your First Content Hire', tag: 'One salary, all the hats', them: { who: 'One mid-level generalist doing strategy, writing, SEO, social, and design. Alone.', clients: 'One. You. That part is genuinely great.', ai: 'Whatever they can get approved.', buying: 'A teammate. Plus recruiting, ramp-up, management, and the risk of a bad hire at a full salary.', pick: 'When content is core to the company forever, in-house is the endgame and we\u2019ll say so on the call. Best sequence we\u2019ve seen: engine built by seniors first, then hire someone to run it. We\u2019ve helped write that job description.' } }
+    ] }
+  };
+  ROUND_LABELS = [
+    ['who', 'WHO DOES THE WORK'],
+    ['clients', 'HOW MANY CLIENTS AT ONCE'],
+    ['ai', 'WHERE AI FITS'],
+    ['buying', 'WHAT YOU\u2019RE REALLY BUYING']
+  ];
+  US = {
+    who: 'Tim and Nelson. The people on the sales call are the people in the doc. There is no bench.',
+    clients: 'Four. Max. It\u2019s the whole operating model.',
+    ai: 'We use it as a research assistant and write for the machines that recommend you. The words are ours.',
+    buying: 'Two senior operators who\u2019ve driven 2.6M+ registered users and 280% revenue growth, and who\u2019ve built and marketed their own product, so we\u2019re not guessing from the agency bleachers.'
+  };
+  renderVals() {
+    const { cat, comp } = this.state;
+    const cats = Object.keys(this.DATA).map((k, i) => ({
+      key: k, label: this.DATA[k].label,
+      selected: k === cat,
+      bg: k === cat ? '#6B46E5' : '#FBF6EF',
+      fg: k === cat ? '#FBF6EF' : '#2B2440',
+      rot: (i % 2 ? 0.8 : -0.8) + 'deg',
+      onPick: () => this.setState({ cat: k, comp: this.DATA[k].comps.length === 1 ? this.DATA[k].comps[0].key : null })
+    }));
+    const catData = cat ? this.DATA[cat] : null;
+    const comps = catData ? catData.comps.map((p) => ({
+      ...p, selected: p.key === comp,
+      bg: p.key === comp ? '#E6DEFB' : '#FBF6EF',
+      onPick: () => this.setState({ comp: p.key })
+    })) : [];
+    const chosen = catData ? catData.comps.find((p) => p.key === comp) : null;
+    const rounds = chosen ? this.ROUND_LABELS.map(([k, label], i) => ({
+      no: i + 1, label, them: chosen.them[k], us: this.US[k]
+    })) : [];
+    return {
+      cats,
+      showComps: !!catData && catData.comps.length > 1,
+      comps,
+      showTape: !!chosen,
+      compName: chosen ? chosen.name : '',
+      rounds,
+      pickThem: chosen ? chosen.them.pick : ''
+    };
+  }
+}
+
+</script>
+</body>
+</html>

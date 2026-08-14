@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 30 30%22%3E%3Ccircle cx=%2215%22 cy=%2215%22 r=%2212%22 fill=%22%23E8B44C%22 stroke=%22%232B2440%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2210.5%22 cy=%2211%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2219%22 cy=%229.5%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2221%22 cy=%2217%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2212.5%22 cy=%2220%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2217%22 cy=%2223%22 r=%221.3%22 fill=%22%232B2440%22/%3E%3C/svg%3E') 4 4,auto;background:#F5EEE5;color:#2B2440;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#6B46E5}a:hover{color:#4C2FB8}a,button{cursor:inherit}
+:focus-visible{outline:3px solid #F1705B;outline-offset:2px;border-radius:4px}
+::selection{background:#E6DEFB}
+h1 .sc-host,h2 .sc-host,h3 .sc-host{display:inline-block}
+</style>
+</helmet>
+<dc-import name="Nav" active="about" hint-size="100%,102px"></dc-import>
+<main>
+  <section style="max-width:1240px;margin:0 auto;padding:64px 24px 0">
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,6.4vw,80px);line-height:1.04;letter-spacing:-0.03em;margin:0;max-width:18ch;text-wrap:balance">Nothing between you and the <dc-import name="Squiggle" word="work" style="display:inline-block" hint-size="4ch,1em"></dc-import>.</h1>
+    <p style="font-size:19px;line-height:1.6;max-width:58ch;color:#514A66;margin:24px 0 0">Here&rsquo;s what your brief travels through at a normal agency, versus here:</p>
+  </section>
+  <section aria-label="The org chart, drawn out" style="max-width:1240px;margin:36px auto 0;padding:0 24px;display:flex;flex-direction:column;gap:18px">
+    <div style="background:#FBF6EF;border:2px solid rgba(43,36,64,0.35);border-radius:18px;padding:22px 26px;position:relative">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#6E6784">EVERYWHERE ELSE &middot; YOUR BRIEF&rsquo;S COMMUTE</span>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px;opacity:0.65">
+        <span style="border:2px solid #2B2440;border-radius:10px;padding:8px 14px;font-weight:700;font-size:14px;background:#F5EEE5">You</span>
+        <span aria-hidden="true" style="color:#6E6784">&rarr;</span>
+        <span style="border:2px dashed #6E6784;border-radius:10px;padding:8px 14px;font-size:14px;color:#514A66;transform:rotate(-1deg)">Account manager</span>
+        <span aria-hidden="true" style="color:#6E6784">&rarr;</span>
+        <span style="border:2px dashed #6E6784;border-radius:10px;padding:8px 14px;font-size:14px;color:#514A66;transform:rotate(0.8deg)">Strategist&rsquo;s deck</span>
+        <span aria-hidden="true" style="color:#6E6784">&rarr;</span>
+        <span style="border:2px dashed #6E6784;border-radius:10px;padding:8px 14px;font-size:14px;color:#514A66;transform:rotate(-0.6deg)">Junior writer (learning on your budget)</span>
+        <span aria-hidden="true" style="color:#6E6784">&rarr;</span>
+        <span style="border:2px dashed #6E6784;border-radius:10px;padding:8px 14px;font-size:14px;color:#514A66;transform:rotate(1deg)">Six weeks later: a draft</span>
+      </div>
+      <span aria-hidden="true" style="position:absolute;top:-14px;right:22px;background:#F1705B;border:2px solid #2B2440;box-shadow:3px 3px 0 #2B2440;border-radius:999px;padding:6px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;transform:rotate(3deg)">NOPE</span>
+    </div>
+    <div style="background:#FBF6EF;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:18px;padding:22px 26px;position:relative">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#6B46E5">HERE &middot; THE ENTIRE COMMUTE</span>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:14px">
+        <span style="border:2px solid #2B2440;border-radius:10px;padding:10px 18px;font-weight:700;font-size:16px;background:#E8B44C;box-shadow:3px 3px 0 #2B2440">You</span>
+        <span aria-hidden="true" style="font-weight:700;color:#6B46E5;font-size:20px">&harr;</span>
+        <span style="border:2px solid #2B2440;border-radius:10px;padding:10px 18px;font-weight:700;font-size:16px;background:#E6DEFB;box-shadow:3px 3px 0 #2B2440">Tim &amp; Nelson</span>
+        <span aria-hidden="true" style="font-weight:700;color:#6B46E5;font-size:20px">&rarr;</span>
+        <span style="border:2px solid #2B2440;border-radius:10px;padding:10px 18px;font-weight:700;font-size:16px;background:#F1705B;box-shadow:3px 3px 0 #2B2440">Published, this month</span>
+      </div>
+      <span aria-hidden="true" style="position:absolute;top:-14px;right:22px;background:#E6DEFB;border:2px solid #2B2440;box-shadow:3px 3px 0 #2B2440;border-radius:999px;padding:6px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;transform:rotate(-2deg)">THE WHOLE CHART</span>
+    </div>
+  </section>
+  <section aria-label="The partners" style="max-width:1240px;margin:80px auto 0;padding:0 24px;display:flex;gap:20px;align-items:center;justify-content:center;flex-wrap:wrap">
+    <article style="flex:1;min-width:300px;max-width:520px;background:#FBF6EF;border-radius:20px;border:2px solid #2B2440;box-shadow:6px 6px 0 #2B2440;padding:28px;display:flex;flex-direction:column;gap:18px;transform:rotate(-1.1deg);position:relative;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:rotate(0deg) translateY(-4px);box-shadow:9px 9px 0 #2B2440">
+      <span aria-hidden="true" style="position:absolute;top:-13px;left:40%;width:90px;height:24px;background:rgba(230,222,251,0.85);border:1px solid rgba(43,36,64,0.25);transform:rotate(-2deg)"></span>
+      <div style="width:100%;aspect-ratio:4/3"><image-slot id="photo-tim" src="assets/tim.png" shape="rounded" radius="14" placeholder="Photo of Tim" alt="Tim Agbola, partner at The Other Guys"></image-slot></div>
+      <div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;background:#E6DEFB;border:1.5px solid #2B2440;padding:6px 12px;border-radius:999px">PARTNER &middot; STRATEGY</span>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;letter-spacing:-0.02em;margin:14px 0 8px">Hey, I&rsquo;m Tim</h2>
+        <p style="font-size:16px;line-height:1.65;color:#514A66;margin:0">The old brain-and-brawn around here. I decide where we&rsquo;re going and why: positioning, narrative, what deserves to exist at all. Neurotic, I think loud, and I work harder. Before this I built content at iGotAnOffer and Launchspace, where I got obsessed with one question: why does distribution get all the credit when the writing does the work?</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;border:1.5px solid rgba(43,36,64,0.4);padding:5px 10px;border-radius:999px;color:#514A66">POSITIONING</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;border:1.5px solid rgba(43,36,64,0.4);padding:5px 10px;border-radius:999px;color:#514A66">NARRATIVE</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;border:1.5px solid rgba(43,36,64,0.4);padding:5px 10px;border-radius:999px;color:#514A66">THE EDITORIAL BAR</span>
+        </div>
+        <p style="font-size:14px;margin:14px 0 0"><a href="Author.dc.html?a=tim" style="font-weight:700">Everything Tim has written &rarr;</a></p>
+      </div>
+    </article>
+    <div aria-hidden="true" style="flex:none;align-self:center;background:#E8B44C;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440;border-radius:999px;padding:14px 18px;text-align:center;transform:rotate(-4deg);z-index:2;margin:0 -34px">
+      <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;line-height:1;margin:0">&harr;</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;margin:6px 0 0;max-width:11ch">ARGUE DAILY, SHIP WEEKLY</p>
+    </div>
+    <article style="flex:1;min-width:300px;max-width:520px;background:#FBF6EF;border-radius:20px;border:2px solid #2B2440;box-shadow:6px 6px 0 #2B2440;padding:28px;display:flex;flex-direction:column;gap:18px;transform:rotate(1.2deg);position:relative;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:rotate(0deg) translateY(-4px);box-shadow:9px 9px 0 #2B2440">
+      <span aria-hidden="true" style="position:absolute;top:-13px;left:36%;width:90px;height:24px;background:rgba(241,112,91,0.6);border:1px solid rgba(43,36,64,0.25);transform:rotate(2deg)"></span>
+      <div style="width:100%;aspect-ratio:4/3"><image-slot id="photo-nelson" src="assets/nelson.png" shape="rounded" radius="14" placeholder="Photo of Nelson" alt="Nelson Ansah, partner at The Other Guys"></image-slot></div>
+      <div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;background:#F1705B;border:1.5px solid #2B2440;padding:6px 12px;border-radius:999px">PARTNER &middot; EXECUTION</span>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;letter-spacing:-0.02em;margin:14px 0 8px">And I&rsquo;m Nelson</h2>
+        <p style="font-size:16px;line-height:1.65;color:#514A66;margin:0">I say overthinking is oxymoronic. While Tim is up in the clouds arguing with the strategy, I&rsquo;m the one turning it into published work, on time, at the bar we promised. I&rsquo;ve shipped for Sprig, ClickUp, Skillzy, and Synthesia, mostly turning product roadmaps into stories buyers finish.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;border:1.5px solid rgba(43,36,64,0.4);padding:5px 10px;border-radius:999px;color:#514A66">PRODUCTION</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;border:1.5px solid rgba(43,36,64,0.4);padding:5px 10px;border-radius:999px;color:#514A66">DISTRIBUTION</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;border:1.5px solid rgba(43,36,64,0.4);padding:5px 10px;border-radius:999px;color:#514A66">DEADLINES</span>
+        </div>
+        <p style="font-size:14px;margin:14px 0 0"><a href="Author.dc.html?a=nelson" style="font-weight:700">Everything Nelson has written &rarr;</a></p>
+      </div>
+    </article>
+  </section>
+  <section aria-label="The numbers" style="max-width:1240px;margin:96px auto 0;padding:0 24px">
+    <div style="text-align:center;max-width:600px;margin:0 auto 30px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784">SMALL TEAM. BILLBOARD NUMBERS.</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,52px);letter-spacing:-0.02em;line-height:1.06;margin:12px 0 0">What two guys add up to.</h2>
+    </div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;justify-content:center;align-items:stretch">
+      <div style="width:250px;background:#6B46E5;color:#FBF6EF;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:24px;transform:rotate(-1.6deg)">
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;line-height:1;margin:0">2.6M+</p>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;margin:12px 0 0;line-height:1.5">REGISTERED USERS ATTRIBUTED TO OUR TEAM&rsquo;S WORK, THROUGH JUL 2026</p>
+      </div>
+      <div style="width:250px;background:#FBF6EF;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:24px;transform:rotate(1.1deg);margin-top:16px">
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;line-height:1.1;margin:0">Series A &rarr; $500M</p>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;margin:12px 0 0;line-height:1.5;color:#514A66">THE VALUATION RIDE WE&rsquo;VE HELPED STARTUPS TAKE</p>
+      </div>
+      <div style="width:250px;background:#F1705B;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:24px;transform:rotate(-0.8deg)">
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;line-height:1;margin:0">280%</p>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;margin:12px 0 0;line-height:1.5">REVENUE GROWTH, OUR BEST SINGLE ENGAGEMENT</p>
+      </div>
+      <div style="width:250px;background:#E6DEFB;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:24px;transform:rotate(1.4deg);margin-top:20px">
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;line-height:1;margin:0">200+</p>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;margin:12px 0 0;line-height:1.5;color:#514A66">SALES INTERACTIONS SOURCED BY CONTENT, ACROSS CLIENT TEAMS</p>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:16px;color:#514A66;max-width:52ch;margin:28px auto 0">Also: we built and marketed <em>our own</em> product before this. So when we talk go-to-market, it&rsquo;s not from the agency bleachers. <a href="Case-Studies.dc.html" style="font-weight:700">The receipts live here &rarr;</a></p>
+  </section>
+  <section aria-label="Us versus them" style="max-width:1100px;margin:96px auto 0;padding:0 24px">
+    <div style="text-align:center;max-width:620px;margin:0 auto 34px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784">US VS. THEM, ITEMIZED</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,52px);letter-spacing:-0.02em;line-height:1.06;margin:12px 0 0">Where your retainer goes.</h2>
+    </div>
+    <div style="display:flex;gap:40px;justify-content:center;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:min(360px,100%);background:#FFFFFF;border:1.5px solid rgba(43,36,64,0.4);box-shadow:0 12px 28px rgba(43,36,64,0.16);padding:26px 24px;transform:rotate(-1.4deg);font-family:'IBM Plex Mono',monospace;color:#3D3654">
+        <p style="font-size:13px;letter-spacing:0.12em;text-align:center;margin:0;font-weight:500">ANY OTHER AGENCY, LLC</p>
+        <p style="font-size:10px;letter-spacing:0.1em;text-align:center;margin:4px 0 0;color:#6E6784">RETAINER INVOICE &middot; #00-TYPICAL</p>
+        <div style="border-top:2px dashed rgba(43,36,64,0.3);margin:16px 0"></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0"><span>ACCOUNT MANAGEMENT</span><span>30%</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0"><span>MEETINGS ABOUT THE MEETING</span><span>12%</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0"><span>&ldquo;STRATEGY&rdquo; DECK (TEMPLATE)</span><span>18%</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0"><span>JUNIOR WRITER, LEARNING ON YOUR DIME</span><span>25%</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0"><span>THE ACTUAL WRITING</span><span>15%</span></div>
+        <div style="border-top:2px dashed rgba(43,36,64,0.3);margin:16px 0"></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;padding:2px 0"><span>TOTAL</span><span>YOUR BUDGET</span></div>
+        <p style="font-size:10px;letter-spacing:0.1em;text-align:center;color:#6E6784;margin:18px 0 0">THANK YOU FOR YOUR PATIENCE</p>
+        <div aria-hidden="true" style="height:34px;margin:14px auto 0;width:70%;background:repeating-linear-gradient(90deg,#2B2440 0 2px,transparent 2px 5px,#2B2440 5px 6px,transparent 6px 10px)"></div>
+      </div>
+      <div style="width:min(340px,100%);align-self:center;background:#E8B44C;border:2px solid #2B2440;box-shadow:6px 6px 0 #2B2440;border-radius:6px;padding:30px 28px;transform:rotate(1.8deg);position:relative">
+        <span aria-hidden="true" style="position:absolute;top:-13px;left:38%;width:84px;height:24px;background:rgba(251,246,239,0.7);border:1px solid rgba(43,36,64,0.25);transform:rotate(-2deg)"></span>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;margin:0;color:#2B2440">OURS IS SIMPLER:</p>
+        <p style="font-family:'Caveat',cursive;font-size:31px;line-height:1.25;margin:14px 0 0;color:#2B2440">Strategy, research, writing, design, distribution.</p>
+        <p style="font-family:'Caveat',cursive;font-size:24px;margin:10px 0 0;color:#2B2440;transform:rotate(-1deg)">&mdash; every line, by the people you hired</p>
+        <p style="font-size:14px;margin:16px 0 0"><a href="Case-Studies.dc.html" style="font-weight:700;color:#2B2440">See what that buys you &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+  <section aria-label="How we think" style="max-width:1240px;margin:96px auto 0;padding:0 24px">
+    <div style="background:#FBF6EF;border:2px solid #2B2440;box-shadow:6px 6px 0 #2B2440;border-radius:20px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:start">
+      <div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784">THE PHILOSOPHY</span>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-0.02em;margin:14px 0 0;text-wrap:balance">Every post is a product demo in disguise.</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;font-size:17px;line-height:1.65;color:#514A66">
+        <p style="margin:0">Quality over quantity, always. Most content teams publish to fill a calendar. We publish when a piece can show what your product makes possible while teaching a lesson only you could deliver. That combination is your moat, because nobody else has your product or your scars.</p>
+        <p style="margin:0">We embed early, learn the roadmap, talk to your buyers, and build story-driven, insight-dense pieces. Anti-generic is the bar. If a competitor could publish it, we cut it.</p>
+      </div>
+    </div>
+  </section>
+  <section aria-label="A letter from us" style="max-width:920px;margin:88px auto 0;padding:0 24px;position:relative">
+    <div style="background:#FBF6EF;border:2px solid #2B2440;box-shadow:6px 6px 0 #2B2440;border-radius:20px;padding:clamp(28px,5vw,56px);transform:rotate(-0.4deg)">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784;margin:0">FROM THE DESK OF THE OTHER GUYS &middot; JULY 2026</p>
+      <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.02em;margin:24px 0 0">Hi. We&rsquo;re Tim and Nelson.</p>
+      <div style="font-size:17px;line-height:1.75;color:#3D3654;margin-top:16px;display:flex;flex-direction:column;gap:16px">
+        <p style="margin:0">We started this agency because most B2B content reads like it was written by no one, for everyone. Our fix is simple to say and hard to do: we make content for the buyer, and for the machines that now recommend you.</p>
+        <p style="margin:0">We take four clients at a time. Max. That&rsquo;s not a scarcity trick. It&rsquo;s the honest ceiling for work we&rsquo;d put our names on. If you&rsquo;re one of the four, you get our full attention, our sharpest thinking, and at least one heated argument about a comma.</p>
+        <p style="margin:0">Come say hi. Worst case, you leave the call with a clearer content strategy than you came with.</p>
+      </div>
+      <p style="font-family:'Caveat',cursive;font-size:34px;color:#6B46E5;margin:28px 0 0;transform:rotate(-2deg)">Tim &amp; Nelson</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#6E6784;margin:4px 0 0">THE ENTIRE ORG CHART, SIGNED</p>
+    </div>
+    <div aria-hidden="true" style="position:absolute;top:-22px;right:36px;width:170px;background:#F1705B;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440;border-radius:14px;padding:16px;transform:rotate(3deg)">
+      <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:36px;line-height:1;margin:0">4</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;margin:6px 0 0">CLIENTS AT A TIME. MAX.</p>
+    </div>
+  </section>
+  <section aria-label="Get started" style="max-width:1240px;margin:88px auto 0;padding:0 24px;text-align:center">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(32px,5vw,56px);letter-spacing:-0.02em;line-height:1.06;margin:0">Let&rsquo;s get your content <dc-import name="Squiggle" word="engine" style="display:inline-block" hint-size="6ch,1em"></dc-import> running.</h2>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:28px">
+      <a href="https://calendly.com/theotherguyss/let-s-talk-about-your-content-marketing" style="text-decoration:none;font-weight:700;font-size:17px;padding:15px 30px;border-radius:999px;background:#F1705B;color:#2B2440;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440" style-hover="background:#E85F48">Book a call</a>
+      <a href="Compare.dc.html" style="text-decoration:none;font-weight:700;font-size:17px;padding:15px 30px;border-radius:999px;background:transparent;color:#6B46E5;border:2px solid #6B46E5" style-hover="background:#E6DEFB">Not sold? Compare us</a>
+    </div>
+    <p style="font-size:16px;color:#514A66;margin:20px 0 0">Or see <a href="Case-Studies.dc.html">the proof</a> before you believe a word of this page.</p>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+</body>
+</html>

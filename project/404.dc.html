@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 30 30%22%3E%3Ccircle cx=%2215%22 cy=%2215%22 r=%2212%22 fill=%22%23E8B44C%22 stroke=%22%232B2440%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2210.5%22 cy=%2211%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2219%22 cy=%229.5%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2221%22 cy=%2217%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2212.5%22 cy=%2220%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2217%22 cy=%2223%22 r=%221.3%22 fill=%22%232B2440%22/%3E%3C/svg%3E') 4 4,auto;background:#F5EEE5;color:#2B2440;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#6B46E5}a:hover{color:#4C2FB8}a,button{cursor:inherit}
+:focus-visible{outline:3px solid #F1705B;outline-offset:2px;border-radius:4px}
+::selection{background:#E6DEFB}
+h1 .sc-host,h2 .sc-host,h3 .sc-host{display:inline-block}
+</style>
+</helmet>
+<dc-import name="Nav" active="none" hint-size="100%,72px"></dc-import>
+<main style="max-width:1240px;margin:0 auto;padding:96px 24px 40px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
+  <p style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.14em;background:#E6DEFB;padding:8px 16px;border-radius:999px;margin:0">ERROR 404 &middot; PAGE NOT FOUND</p>
+  <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(44px,8vw,96px);line-height:1.02;letter-spacing:-0.03em;margin:0;max-width:14ch;text-wrap:balance">This page <dc-import name="Squiggle" word="wandered" style="display:inline-block" hint-size="8ch,1em"></dc-import> off.</h1>
+  <p style="font-size:19px;line-height:1.6;color:#514A66;max-width:44ch;margin:0">There&rsquo;s nothing here. Either we moved it and forgot to tell the internet, or you typed something adventurous. Both happen.</p>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:8px">
+    <a href="Home.dc.html" style="text-decoration:none;font-weight:700;font-size:16px;padding:13px 26px;border-radius:999px;background:#F1705B;color:#2B2440;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440" style-hover="background:#E85F48">Back home</a>
+    <a href="Blog.dc.html" style="text-decoration:none;font-weight:700;font-size:16px;padding:13px 26px;border-radius:999px;background:transparent;color:#6B46E5;border:2px solid #6B46E5" style-hover="background:#E6DEFB">Read something good instead</a>
+  </div>
+  <figure style="margin:40px 0 0;width:min(420px,100%)">
+    <div style="width:100%;aspect-ratio:3/2"><image-slot id="ill-404" shape="rounded" radius="20" placeholder="Pencil illustration: a lost paper airplane circling a signpost with no signs" alt="Pencil illustration of a lost paper airplane circling a blank signpost"></image-slot></div>
+    <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E6784;margin-top:10px">ILLUSTRATION: A LOST PAPER AIRPLANE. DROP THE REAL DRAWING HERE.</figcaption>
+  </figure>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+</body>
+</html>

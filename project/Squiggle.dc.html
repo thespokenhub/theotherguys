@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<span style="position:relative;display:inline-block">{{ word }}<svg aria-hidden="true" viewBox="0 0 200 14" preserveAspectRatio="none" style="position:absolute;left:-2%;bottom:-0.18em;width:104%;height:0.28em;overflow:visible;pointer-events:none"><path ref="{{ pathRef }}" d="M3 9 C 28 3, 52 13, 78 7 C 104 2, 128 12, 154 6 C 172 3, 186 9, 197 5" fill="none" stroke="{{ color }}" stroke-width="6" stroke-linecap="round"></path></svg></span>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;400px&quot;,&quot;height&quot;:&quot;120px&quot;},&quot;word&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;good&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;color&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#F1705B&quot;,&quot;options&quot;:[&quot;#F1705B&quot;,&quot;#6B46E5&quot;,&quot;#2B2440&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  pathRef = (el) => { if (el) { this._el = el; this._setup(); } };
+  componentDidMount() { this._mounted = true; this._setup(); }
+  _setup() {
+    const el = this._el;
+    if (!el || !this._mounted || this._done) return;
+    this._done = true;
+    try {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const len = el.getTotalLength();
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = len;
+      const draw = () => {
+        if (this._drawn) return;
+        this._drawn = true;
+        void el.getBoundingClientRect();
+        el.style.transition = 'stroke-dashoffset 600ms ease-out';
+        setTimeout(() => { el.style.strokeDashoffset = '0'; }, 0);
+      };
+      const svg = el.ownerSVGElement;
+      const io = new IntersectionObserver((es) => {
+        if (es.some((e) => e.isIntersecting)) { draw(); io.disconnect(); }
+      }, { threshold: 0.1 });
+      io.observe(svg);
+      const check = () => {
+        if (this._drawn) return;
+        const r = svg.getBoundingClientRect();
+        if (r.width > 0 && r.top < window.innerHeight && r.bottom > 0) draw();
+      };
+      setTimeout(check, 400);
+      setTimeout(check, 1400);
+    } catch (err) {
+      if (el) { el.style.strokeDasharray = ''; el.style.strokeDashoffset = ''; }
+    }
+  }
+  renderVals() {
+    return {
+      word: this.props.word ?? '',
+      color: this.props.color ?? '#F1705B',
+      pathRef: this.pathRef
+    };
+  }
+}
+</script>
+</body>
+</html>

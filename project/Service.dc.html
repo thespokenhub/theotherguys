@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 30 30%22%3E%3Ccircle cx=%2215%22 cy=%2215%22 r=%2212%22 fill=%22%23E8B44C%22 stroke=%22%232B2440%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2210.5%22 cy=%2211%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2219%22 cy=%229.5%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2221%22 cy=%2217%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2212.5%22 cy=%2220%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2217%22 cy=%2223%22 r=%221.3%22 fill=%22%232B2440%22/%3E%3C/svg%3E') 4 4,auto;background:#F5EEE5;color:#2B2440;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#6B46E5}a:hover{color:#4C2FB8}a,button{cursor:inherit}
+:focus-visible{outline:3px solid #F1705B;outline-offset:2px;border-radius:4px}
+::selection{background:#E6DEFB}
+h1 .sc-host,h2 .sc-host,h3 .sc-host{display:inline-block}
+</style>
+</helmet>
+<dc-import name="Nav" active="none" hint-size="100%,102px"></dc-import>
+<main>
+  <section style="max-width:900px;margin:0 auto;padding:64px 24px 0">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.1em;color:#6E6784;margin:0"><a href="Home.dc.html#menu" style="color:#6B46E5">THE MENU</a> / ITEM {{ no }}</p>
+    <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-top:20px">
+      <div style="flex:1;min-width:280px">
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(38px,6vw,72px);line-height:1.04;letter-spacing:-0.03em;margin:0;text-wrap:balance">{{ name }}</h1>
+        <p style="font-size:clamp(19px,2.4vw,24px);font-style:italic;color:#6B46E5;margin:14px 0 0">&ldquo;{{ quip }}&rdquo;</p>
+      </div>
+      <div aria-hidden="true" style="flex:none;background:#FBF6EF;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440;border-radius:14px;padding:14px 18px;transform:rotate(3deg);text-align:center">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;margin:0;color:#6E6784">MENU ITEM</p>
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;line-height:1;margin:4px 0 0;color:#F1705B">N&ordm;{{ no }}</p>
+      </div>
+    </div>
+    <p style="font-size:19px;line-height:1.65;color:#514A66;max-width:60ch;margin:24px 0 0">{{ blurb }}</p>
+    <div style="display:flex;align-items:baseline;gap:12px 26px;flex-wrap:wrap;margin-top:32px;border-top:1px solid rgba(43,36,64,0.14);padding-top:20px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#6E6784;flex:none">COOKED FOR TEAMS AT &rarr;</span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.01em">Synthesia</span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.01em">ClickUp</span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.01em">Sprig</span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.01em">iGotAnOffer</span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.01em">Roofr</span>
+    </div>
+  </section>
+  <section aria-label="What you get" style="max-width:900px;margin:56px auto 0;padding:0 24px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784">WHAT COMES OUT OF THE KITCHEN</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:16px">
+      <sc-for list="{{ bullets }}" as="b" hint-placeholder-count="3">
+        <div style="background:#FBF6EF;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:22px;display:flex;gap:14px;align-items:flex-start">
+          <span aria-hidden="true" style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#F1705B;flex:none;padding-top:2px">{{ b.no }}</span>
+          <p style="font-size:16px;line-height:1.55;margin:0">{{ b.text }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section aria-label="How we do it" style="max-width:900px;margin:64px auto 0;padding:0 24px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#6E6784">THE RECIPE, WRITTEN OUT</span>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,3.6vw,40px);letter-spacing:-0.02em;margin:12px 0 0">How we cook it.</h2>
+    <p style="font-size:17px;line-height:1.7;color:#514A66;max-width:66ch;margin:16px 0 0">{{ how }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px 44px;margin-top:30px">
+      <sc-for list="{{ subs }}" as="u" hint-placeholder-count="4">
+        <div style="border-top:2px solid #2B2440;padding-top:14px">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#F1705B;margin:0">{{ u.no }}</p>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.015em;margin:8px 0 8px">{{ u.t }}</h3>
+          <p style="font-size:15.5px;line-height:1.65;color:#514A66;margin:0">{{ u.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section aria-label="When you need this" style="max-width:900px;margin:48px auto 0;padding:0 24px">
+    <div style="background:#E6DEFB;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:24px 28px;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#6B46E5;flex:none">YOU NEED THIS WHEN &rarr;</span>
+      <p style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(17px,2.2vw,21px);line-height:1.45;margin:0;flex:1;min-width:260px">{{ need }}</p>
+    </div>
+    <p style="font-size:16px;color:#514A66;margin:18px 0 0">Proof it works: <a href="{{ proofHref }}" style="font-weight:700">{{ proofLabel }}</a></p>
+  </section>
+  <section aria-label="A client note" style="max-width:900px;margin:64px auto 0;padding:0 24px;display:flex;justify-content:center">
+    <figure style="max-width:600px;margin:0;background:#FBF6EF;border:2px solid #2B2440;box-shadow:5px 5px 0 #2B2440;border-radius:16px;padding:30px 32px;transform:rotate(-1.2deg);position:relative">
+      <span aria-hidden="true" style="position:absolute;top:-13px;left:40%;width:90px;height:24px;background:rgba(241,112,91,0.6);border:1px solid rgba(43,36,64,0.25);transform:rotate(2deg)"></span>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#6E6784;margin:0">OFF THE WALL OF LOVE</p>
+      <blockquote style="margin:14px 0 0;padding:0"><p style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(19px,2.4vw,23px);line-height:1.45;margin:0">&ldquo;{{ quoteText }}&rdquo;</p></blockquote>
+      <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#514A66;margin:16px 0 0">{{ quoteWho }}</figcaption>
+    </figure>
+  </section>
+  <section aria-label="Keep going" style="max-width:900px;margin:80px auto 0;padding:0 24px 100px;text-align:center;border-top:1px solid rgba(43,36,64,0.14);padding-top:40px">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,3.6vw,40px);letter-spacing:-0.02em;margin:0">Want this on your roadmap?</h2>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:24px">
+      <a href="https://calendly.com/theotherguyss/let-s-talk-about-your-content-marketing" style="text-decoration:none;font-weight:700;font-size:16px;padding:14px 28px;border-radius:999px;background:#F1705B;color:#2B2440;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440" style-hover="background:#E85F48">Book a call</a>
+      <a href="{{ nextHref }}" style="text-decoration:none;font-weight:700;font-size:16px;padding:14px 28px;border-radius:999px;background:transparent;color:#6B46E5;border:2px solid #6B46E5" style-hover="background:#E6DEFB">Next on the menu: {{ nextName }} &rarr;</a>
+    </div>
+    <p style="font-size:15px;color:#514A66;margin:18px 0 0">Or head <a href="Home.dc.html#menu">back to the full menu</a>.</p>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { services: [] };
+  componentDidMount() {
+    import('./services.js').then((m) => this.setState({ services: m.SERVICES }));
+  }
+  renderVals() {
+    const list = this.state.services;
+    const slug = new URLSearchParams(location.search).get('s') || 'content-strategy';
+    const i = Math.max(0, list.findIndex((s) => s.slug === slug));
+    const s = list[i] || {};
+    const next = list.length ? list[(i + 1) % list.length] : {};
+    return {
+      no: s.no || '', name: s.name || '', quip: s.quip || '', blurb: s.blurb || '', need: s.need || '',
+      how: s.how || '',
+      subs: (s.subs || []).map((u, n) => ({ ...u, no: '0' + (n + 1) })),
+      quoteText: s.quote ? s.quote.text : '', quoteWho: s.quote ? s.quote.who : '',
+      bullets: (s.bullets || []).map((text, n) => ({ text, no: '0' + (n + 1) })),
+      proofHref: s.proof ? s.proof.href : '#', proofLabel: s.proof ? s.proof.label : '',
+      nextHref: next.slug ? 'Service.dc.html?s=' + next.slug : 'Home.dc.html#menu',
+      nextName: next.name || 'the menu'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

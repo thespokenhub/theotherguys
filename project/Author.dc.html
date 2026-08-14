@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 30 30%22%3E%3Ccircle cx=%2215%22 cy=%2215%22 r=%2212%22 fill=%22%23E8B44C%22 stroke=%22%232B2440%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2210.5%22 cy=%2211%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2219%22 cy=%229.5%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2221%22 cy=%2217%22 r=%222%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2212.5%22 cy=%2220%22 r=%221.7%22 fill=%22%232B2440%22/%3E%3Ccircle cx=%2217%22 cy=%2223%22 r=%221.3%22 fill=%22%232B2440%22/%3E%3C/svg%3E') 4 4,auto;background:#F5EEE5;color:#2B2440;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#6B46E5}a:hover{color:#4C2FB8}a,button{cursor:inherit}
+:focus-visible{outline:3px solid #F1705B;outline-offset:2px;border-radius:4px}
+::selection{background:#E6DEFB}
+h1 .sc-host,h2 .sc-host,h3 .sc-host{display:inline-block}
+</style>
+</helmet>
+<dc-import name="Nav" active="blog" hint-size="100%,102px"></dc-import>
+<main>
+  <section style="max-width:900px;margin:0 auto;padding:64px 24px 0">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.1em;color:#6E6784;margin:0"><a href="Blog.dc.html" style="color:#6B46E5">BLOG</a> / THE BYLINE</p>
+    <div style="background:#FBF6EF;border:2px solid #2B2440;box-shadow:6px 6px 0 #2B2440;border-radius:20px;padding:clamp(24px,4vw,40px);margin-top:24px;display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap;position:relative">
+      <span aria-hidden="true" style="position:absolute;top:-13px;left:42%;width:90px;height:24px;background:rgba(230,222,251,0.85);border:1px solid rgba(43,36,64,0.25);transform:rotate(-2deg)"></span>
+      <div style="width:180px;flex:none;transform:rotate(-2deg)"><div style="width:100%;aspect-ratio:1"><image-slot id="{{ slotId }}" src="{{ photoSrc }}" shape="rounded" radius="14" placeholder="{{ photoPh }}" alt="{{ photoAlt }}"></image-slot></div></div>
+      <div style="flex:1;min-width:260px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;background:#E6DEFB;border:1.5px solid #2B2440;padding:6px 12px;border-radius:999px">{{ roleTag }}</span>
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(32px,5vw,52px);letter-spacing:-0.03em;line-height:1.05;margin:14px 0 0">{{ name }}</h1>
+        <p style="font-size:17px;line-height:1.65;color:#514A66;margin:14px 0 0;max-width:56ch">{{ bio }}</p>
+        <p style="font-family:'Caveat',cursive;font-size:24px;color:#6B46E5;margin:14px 0 0;transform:rotate(-1deg)">{{ beat }}</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px">
+          <a href="{{ linkedin }}" style="text-decoration:none;font-weight:700;font-size:15px;padding:11px 20px;border-radius:999px;background:#6B46E5;color:#FBF6EF;border:2px solid #2B2440;box-shadow:3px 3px 0 #2B2440" style-hover="background:#4C2FB8">LinkedIn &nearr;</a>
+          <a href="About.dc.html" style="text-decoration:none;font-weight:700;font-size:15px;padding:11px 20px;border-radius:999px;background:transparent;color:#6B46E5;border:2px solid #6B46E5" style-hover="background:#E6DEFB">Meet both of us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section aria-label="Posts by this author" style="max-width:900px;margin:56px auto 0;padding:0 24px">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;border-bottom:2px solid #2B2440;padding-bottom:12px">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,34px);letter-spacing:-0.02em;margin:0">Everything with {{ firstName }}&rsquo;s name on it</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#6E6784">{{ postCount }} PIECES &middot; ALL BY HAND</span>
+    </div>
+    <div role="list" style="display:flex;flex-direction:column">
+      <sc-for list="{{ posts }}" as="p" hint-placeholder-count="5">
+        <article role="listitem" style="display:flex;gap:20px;align-items:baseline;padding:22px 8px;border-bottom:1px solid rgba(43,36,64,0.16);flex-wrap:wrap" style-hover="background:#FBF6EF">
+          <span aria-hidden="true" style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#F1705B;flex:none;width:34px">{{ p.num }}</span>
+          <div style="flex:1;min-width:240px">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(19px,2.3vw,24px);letter-spacing:-0.015em;line-height:1.2;margin:0"><a href="Blog-Post.dc.html" style="color:#2B2440;text-decoration:none" style-hover="color:#6B46E5">{{ p.title }}</a></h3>
+            <p style="font-size:15px;line-height:1.55;color:#6E6784;margin:6px 0 0;max-width:64ch">{{ p.blurb }}</p>
+          </div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6E6784;flex:none">{{ p.meta }}</span>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+  <section aria-label="Keep going" style="max-width:900px;margin:72px auto 0;padding:0 24px 100px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center">
+    <a href="{{ otherHref }}" style="text-decoration:none;font-weight:700;font-size:16px;padding:14px 28px;border-radius:999px;background:transparent;color:#6B46E5;border:2px solid #6B46E5" style-hover="background:#E6DEFB">Read the other guy: {{ otherName }} &rarr;</a>
+    <a href="https://calendly.com/theotherguyss/let-s-talk-about-your-content-marketing" style="text-decoration:none;font-weight:700;font-size:16px;padding:14px 28px;border-radius:999px;background:#F1705B;color:#2B2440;border:2px solid #2B2440;box-shadow:4px 4px 0 #2B2440" style-hover="background:#E85F48">Put them both on your team</a>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { authors: null, posts: [], pillars: null };
+  componentDidMount() {
+    import('./posts.js').then((m) => this.setState({ authors: m.AUTHORS, posts: m.POSTS, pillars: m.PILLARS }));
+  }
+  renderVals() {
+    const { authors, posts, pillars } = this.state;
+    const key = new URLSearchParams(location.search).get('a') === 'nelson' ? 'nelson' : 'tim';
+    const a = authors ? authors[key] : null;
+    const other = authors ? authors[key === 'tim' ? 'nelson' : 'tim'] : null;
+    const P = pillars || {};
+    const mine = a ? posts.filter((p) => p.author === a.name) : [];
+    return {
+      name: a ? a.name : '', firstName: a ? a.name.split(' ')[0] : '',
+      roleTag: a ? a.role.toUpperCase() : '', bio: a ? a.bio : '', beat: a ? a.beat : '',
+      linkedin: a ? a.linkedin : '#', slotId: a ? a.slotId : 'photo-author',
+      photoSrc: a ? a.photo : undefined,
+      photoPh: a ? 'Photo of ' + a.name.split(' ')[0] : 'Photo',
+      photoAlt: a ? 'Portrait of ' + a.name : '',
+      postCount: mine.length,
+      posts: mine.map((p, i) => ({
+        ...p, num: String(i + 1).padStart(2, '0'),
+        meta: (p.type === 'report' ? 'REPORT \u00b7 ' : '') + (P[p.pillar] ? P[p.pillar].label.toUpperCase() : '') + ' \u00b7 ' + p.date.toUpperCase() + ' \u00b7 ' + p.mins + ' MIN'
+      })),
+      otherHref: other ? 'Author.dc.html?a=' + other.key : 'About.dc.html',
+      otherName: other ? other.name.split(' ')[0] : ''
+    };
+  }
+}
+
+</script>
+</body>
+</html>
