@@ -248,7 +248,9 @@ function PostPage({ post }: { post: Post }) {
               {toc.length > 0 && (
                 <aside
                   aria-label="Table of contents"
-                  className="sticky top-[120px] box-border w-[190px] flex-none rotate-[1.2deg] rounded-[14px] border-2 border-ink bg-cream-100 p-[18px] shadow-hard-4 max-[840px]:static max-[840px]:w-full max-[840px]:rotate-0"
+                  /* On a phone the map belongs before the journey, not after
+                     it: order-first lifts it above the prose. */
+                  className="sticky top-[120px] box-border w-[190px] flex-none rotate-[1.2deg] rounded-[14px] border-2 border-ink bg-cream-100 p-[18px] shadow-hard-4 max-[840px]:static max-[840px]:order-first max-[840px]:mb-2 max-[840px]:w-full max-[840px]:rotate-0"
                 >
                   <span
                     aria-hidden="true"

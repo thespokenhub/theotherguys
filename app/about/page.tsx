@@ -149,7 +149,9 @@ export default function AboutPage() {
 
           <div
             aria-hidden="true"
-            className="z-2 mx-[-34px] flex-none translate-y-0 rotate-[-4deg] self-center rounded-full border-2 border-ink bg-gold px-[18px] py-3.5 text-center shadow-hard-4"
+            /* The overlap only reads when the cards sit side by side; stacked,
+               it just bites into them. */
+            className="z-2 mx-[-34px] flex-none translate-y-0 rotate-[-4deg] self-center rounded-full border-2 border-ink bg-gold px-[18px] py-3.5 text-center shadow-hard-4 max-[720px]:mx-0"
           >
             <p className="m-0 font-display text-[20px] leading-none font-bold">&harr;</p>
             <p className="mt-1.5 mb-0 max-w-[11ch] font-mono text-[10px] tracking-[0.1em]">
@@ -342,7 +344,7 @@ export default function AboutPage() {
         {/* ── The letter ───────────────────────────────────────────────── */}
         <section
           aria-label="A letter from us"
-          className="relative mx-auto mt-[88px] max-w-[920px] px-6"
+          className="relative mx-auto mt-[88px] flex max-w-[920px] flex-col px-6"
         >
           <div className="rotate-[-0.4deg] rounded-[20px] border-2 border-ink bg-cream-100 p-[clamp(28px,5vw,56px)] shadow-hard-6">
             <p className="m-0 font-mono text-[12px] tracking-[0.14em] text-muted">
@@ -377,7 +379,9 @@ export default function AboutPage() {
           </div>
           <div
             aria-hidden="true"
-            className="absolute -top-[22px] right-9 w-[170px] rotate-3 rounded-[14px] border-2 border-ink bg-coral p-4 shadow-hard-4"
+            /* Pinned to the letter's corner on desktop; on a phone that corner
+               is where the first line of the letter lives, so it moves above. */
+            className="absolute -top-[22px] right-9 w-[170px] rotate-3 rounded-[14px] border-2 border-ink bg-coral p-4 shadow-hard-4 max-[640px]:static max-[640px]:order-first max-[640px]:mb-4 max-[640px]:self-end"
           >
             <p className="m-0 font-display text-[36px] leading-none font-bold">4</p>
             <p className="mt-1.5 mb-0 font-mono text-[10px] tracking-[0.1em]">

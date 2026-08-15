@@ -129,12 +129,14 @@ export default function HomePage() {
           aria-label="Clients"
           className="relative z-2 mx-auto mt-[-44px] max-w-[1000px] px-6"
         >
-          <div className="flex items-center gap-6 overflow-hidden rounded-full border-2 border-ink bg-cream-100 px-[26px] py-4 shadow-hard-5">
+          {/* Stacked on a phone: side by side, the label leaves the marquee a
+              sliver and you see one client name mid-scroll. */}
+          <div className="flex items-center gap-6 overflow-hidden rounded-full border-2 border-ink bg-cream-100 px-[26px] py-4 shadow-hard-5 max-[560px]:flex-col max-[560px]:items-start max-[560px]:gap-2 max-[560px]:rounded-[28px] max-[560px]:px-5">
             <span className="flex-none font-mono text-[12px] tracking-[0.12em] text-muted">
               TRUSTED BY TEAMS AT &rarr;
             </span>
             <div
-              className="min-w-0 flex-1 overflow-hidden"
+              className="min-w-0 flex-1 overflow-hidden max-[560px]:w-full"
               style={{
                 maskImage: 'linear-gradient(to right,transparent,black 8%,black 92%,transparent)',
                 WebkitMaskImage:
@@ -234,7 +236,10 @@ export default function HomePage() {
                   <span className="text-right text-[15px] text-[rgba(245,238,229,0.65)] italic max-[560px]:basis-full max-[560px]:text-left">
                     {service.quip}
                   </span>
-                  <span aria-hidden="true" className="flex-none font-bold text-gold">
+                  <span
+                    aria-hidden="true"
+                    className="flex-none font-bold text-gold max-[560px]:hidden"
+                  >
                     &rarr;
                   </span>
                 </Link>

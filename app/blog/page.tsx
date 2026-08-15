@@ -61,9 +61,11 @@ export default async function BlogPage({
 
         {/* ── The folder ───────────────────────────────────────────────── */}
         <section aria-label="Blog index" className="mx-auto mt-12 max-w-[1240px] px-6">
+          {/* Narrow screens get one swipeable row of dividers rather than four
+              stacked rows, which loses the folder-tab read entirely. */}
           <nav
             aria-label="Filter by pillar"
-            className="flex flex-wrap items-end gap-1.5 px-[18px]"
+            className="flex flex-wrap items-end gap-1.5 px-[18px] max-[720px]:flex-nowrap max-[720px]:overflow-x-auto max-[720px]:px-3 max-[720px]:[scrollbar-width:none]"
           >
             {tabs.map((tab) => {
               const selected = tab.key === filter;
@@ -72,7 +74,7 @@ export default async function BlogPage({
                   key={tab.key}
                   href={tab.href}
                   aria-current={selected ? 'true' : undefined}
-                  className={`rounded-t-[14px] border-2 border-b-0 border-ink px-[18px] font-mono text-[13px] tracking-[0.06em] text-ink no-underline hover:text-ink ${
+                  className={`flex-none rounded-t-[14px] border-2 border-b-0 border-ink px-[18px] font-mono text-[13px] tracking-[0.06em] whitespace-nowrap text-ink no-underline hover:text-ink ${
                     selected ? 'bg-cream-100 py-3.5' : 'bg-purple-200 py-2.5'
                   }`}
                 >

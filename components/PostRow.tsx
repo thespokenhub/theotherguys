@@ -62,7 +62,7 @@ export default function PostRow({
           {post.blurb}
         </p>
       </div>
-      <span className="max-w-full text-right font-mono text-[12px] tracking-[0.06em] text-muted">
+      <span className="max-w-full text-right font-mono text-[12px] tracking-[0.06em] text-muted max-[560px]:text-left">
         {meta}
       </span>
     </article>
