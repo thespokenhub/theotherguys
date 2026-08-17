@@ -46,13 +46,52 @@ Every page of the handoff is now implemented.
   statically generated; unknown slugs 404.
 - Blog index filters are URL-addressable (`/blog?pillar=ai`) as HANDOFF.md
   asks — the tabs are links, not client state.
-- `lib/posts.ts` is the post schema the future CMS replaces. Only
-  `good-writing-work` has its full body (ported from the Blog-Post prototype);
-  the other posts render an in-voice "still in the moving boxes" note until
-  their content is migrated from the old blog. The `BodyBlock` union is what
-  markdown should map onto.
+- Posts are markdown files in `content/posts/<slug>.md`, written at `/admin`
+  (see below). `lib/posts.ts` reads them at build time and still exports
+  `POSTS`, `getPost`, `postMeta`, and `PILLAR_KEYS` unchanged, so the index,
+  pillar hubs, and author pages never had to know. `PILLARS` and `AUTHORS` stay
+  in code: they're structure, not content.
+- Only `good-writing-work` has its full body (ported from the Blog-Post
+  prototype); the other posts render an in-voice "still in the moving boxes"
+  note until their content is migrated from the old blog.
 - The post byline avoids gendered pronouns the prototype hardcoded
   ("All his posts" → "All posts by Tim").
+
+## The CMS
+
+`/admin` is [Sveltia CMS](https://github.com/sveltia/sveltia-cms) —
+`public/admin/index.html` plus `config.yml`, no build step, no service in the
+middle. It commits markdown straight to this repo and Vercel redeploys on the
+push.
+
+- **Auth is ours.** `app/api/auth` starts the GitHub OAuth handshake and
+  `app/api/callback` finishes it, reading `GITHUB_CLIENT_ID` and
+  `GITHUB_CLIENT_SECRET` from the environment. No third-party OAuth broker ever
+  sees the token. `backend.base_url` in `config.yml` must match the origin the
+  GitHub OAuth App's callback URL points at; change both together. The grant
+  defaults to the `repo` scope; `GITHUB_OAUTH_SCOPE=public_repo` narrows it
+  while this repo stays public.
+- **Frontmatter** is one field per key: `title`, `squiggle` (the word to
+  underline in the headline), `pillar`, `author`, `date`, `blurb`, `image`,
+  `ill` (alt text), `report`, `draft`. Four optional keys exist to hold the
+  design steady on posts the prototype hand-set: `headline` (when the post
+  page's headline differs from the index title), `caption` (the mono line under
+  the hero), `note` (the scribble under THE MAP), and `mins` (pins the reading
+  time on posts whose body hasn't been migrated yet — otherwise it's counted
+  from the body at 200 wpm).
+- **`draft: true`** keeps a post in the repo and out of the production build.
+  It still renders under `npm run dev` so you can read it before publishing.
+- **Rendering** is `lib/markdown.ts`: gray-matter for the frontmatter, marked
+  for the body, github-slugger for heading anchors, sanitize-html over the
+  result. It runs at build time only — no markdown parser ships to the browser.
+  Headings come back as a list, which is what "THE MAP" is built from.
+- **Typography** lives in the `.article` scope in `app/globals.css` rather than
+  on utility classes, because the markup is authored, not written in JSX. The
+  values are the prototype's: 18px/1.75 body, 24px between paragraphs, 30px
+  Space Grotesk h2s with a 44px lead-in, blockquote as the purple card.
+- Ordering is date-descending. The publish time only matters for two posts on
+  the same day; slug breaks a dead tie so the order never depends on the
+  filesystem.
 
 ## Services and case studies
 
@@ -105,8 +144,8 @@ copy (deliverables, "how we cook it", testimonials) is still in
 - Pencil illustrations still missing: `aeo-manners` and `client-first-30`
   post images, and the three case cards on `/work` (igotanoffer, synthesia,
   clickup). Everything else is in `public/images/` (WebP, ≤1700px wide).
-  A post gains its image via the `image` field in `lib/posts.ts`; posts
-  without one automatically show the briefed placeholder frame.
+  A post gains its image by uploading it in the "Hero illustration" field at
+  `/admin`; posts without one automatically show the briefed placeholder frame.
 - The logo is still hotlinked from the old Webflow CDN
   (`LOGO_SRC` in `lib/site.ts`). Worth vendoring into `public/images/`.
 - Case-study figures are realistic stand-ins pending final numbers.

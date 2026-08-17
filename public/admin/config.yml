@@ -1,0 +1,141 @@
+# Sveltia CMS — the browser end of the blog.
+#
+# Everything here is edited at /admin and committed straight to this repo, so a
+# published post is a git commit and Vercel rebuilds on the push. Fields map
+# one-to-one onto the frontmatter that lib/posts.ts reads.
+
+backend:
+  name: github
+  repo: thespokenhub/theotherguys
+  branch: main
+  # The OAuth handshake is ours: app/api/auth starts it, app/api/callback
+  # finishes it. base_url must be the origin the GitHub OAuth App's callback
+  # URL points at — change both together if the domain ever changes. Leaving it
+  # on the live domain is deliberate: /admin then works from a laptop too.
+  base_url: https://deotherguys.com
+  auth_endpoint: api/auth
+  commit_messages:
+    create: 'Add post: {{slug}}'
+    update: 'Update post: {{slug}}'
+    delete: 'Delete post: {{slug}}'
+    uploadMedia: 'Add illustration: {{path}}'
+    deleteMedia: 'Delete illustration: {{path}}'
+
+# Illustrations live beside the ones already drawn, and posts refer to them by
+# the public path Next serves them from.
+media_folder: public/images/posts
+public_folder: /images/posts
+
+collections:
+  - name: posts
+    label: Posts
+    label_singular: Post
+    folder: content/posts
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    slug: '{{slug}}'
+    identifier_field: title
+    summary: '{{title}}'
+    sortable_fields: [date, title, pillar]
+    view_groups:
+      - label: Pillar
+        field: pillar
+    fields:
+      - name: title
+        label: Title
+        widget: string
+        hint: Title case. This is the headline on the blog index, in cards, and in the browser tab.
+
+      - name: squiggle
+        label: Squiggled word
+        widget: string
+        required: false
+        hint: One word from the headline to underline with the hand-drawn squiggle. Leave empty for no squiggle.
+
+      - name: headline
+        label: Headline on the post page
+        widget: string
+        required: false
+        hint: Only if the big headline on the post itself should read differently from the title above (the design uses sentence case there). Leave empty to reuse the title.
+
+      - name: pillar
+        label: Pillar
+        widget: select
+        options:
+          - { label: 'SEO', value: seo }
+          - { label: 'AI Search', value: ai }
+          - { label: 'Content Marketing', value: content }
+          - { label: 'The Craft', value: craft }
+          - { label: 'Did You Notice', value: notice }
+          - { label: 'Between Us', value: us }
+
+      - name: author
+        label: Author
+        widget: select
+        options:
+          - { label: 'Timothy Agbola', value: tim }
+          - { label: 'Nelson Ansah', value: nelson }
+
+      - name: date
+        label: Publish date
+        widget: datetime
+        format: "YYYY-MM-DDTHH:mm:ss[Z]"
+        date_format: 'MMM D, YYYY'
+        time_format: 'HH:mm'
+        picker_utc: true
+        hint: Posts are listed newest first. The time only matters for two posts published on the same day — the later time goes first.
+
+      - name: blurb
+        label: Blurb
+        widget: text
+        hint: The standfirst under the headline, and the description on cards and in search results. Two sentences is plenty.
+
+      - name: image
+        label: Hero illustration
+        widget: image
+        required: false
+        hint: Leave empty and the post shows the briefed placeholder frame instead.
+
+      - name: ill
+        label: Illustration description
+        widget: string
+        hint: Required, because this is the alt text. Describe the drawing the way you'd describe it out loud.
+
+      - name: caption
+        label: Caption under the illustration
+        widget: string
+        required: false
+        hint: Small mono type under the hero, set in caps. Leave empty to reuse the description above.
+
+      - name: note
+        label: Handwritten note under THE MAP
+        widget: string
+        required: false
+        hint: The scribble under the contents panel. Leave empty for "no wrong turns, it's N min".
+
+      - name: mins
+        label: Reading time
+        widget: number
+        required: false
+        value_type: int
+        min: 1
+        hint: Leave empty. Reading time is counted from the body; this only exists to pin the number on posts whose text hasn't been moved over yet.
+
+      - name: report
+        label: Full report
+        widget: boolean
+        default: false
+        hint: Adds the ⬛ REPORT badge in the index and author lists.
+
+      - name: draft
+        label: Draft
+        widget: boolean
+        default: false
+        hint: Drafts are saved to the repo but left out of the published site.
+
+      - name: body
+        label: Body
+        widget: markdown
+        required: false
+        hint: Use "##" headings — they become the anchors in THE MAP contents panel. A blockquote becomes the purple pull-quote card.

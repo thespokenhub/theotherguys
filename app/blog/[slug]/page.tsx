@@ -134,7 +134,9 @@ function PillarPage({ pillarKey }: { pillarKey: PillarKey }) {
 function PostPage({ post }: { post: Post }) {
   const author = AUTHORS[post.authorKey];
   const pillar = PILLARS[post.pillar];
-  const toc = post.body?.blocks.filter((block) => block.type === 'h2') ?? [];
+  /* "THE MAP" is the h2 spine of the piece; deeper headings still get anchors
+     but would turn a 190px panel into a second article. */
+  const toc = post.body?.headings.filter((heading) => heading.level === 2) ?? [];
   const readNext = [
     ...POSTS.filter((p) => p.slug !== post.slug && p.pillar === post.pillar),
     ...POSTS.filter((p) => p.slug !== post.slug && p.pillar !== post.pillar),
@@ -212,38 +214,12 @@ function PostPage({ post }: { post: Post }) {
 
           {post.body ? (
             <div className="mx-auto mt-11 flex max-w-[1120px] flex-wrap items-start justify-center gap-8 px-6">
-              <div className="min-w-[280px] max-w-[660px] flex-1 text-[18px] leading-[1.75] text-body">
-                {post.body.blocks.map((block, index) => {
-                  if (block.type === 'h2') {
-                    return (
-                      <h2
-                        key={index}
-                        id={block.id}
-                        className="mt-11 mb-4 font-display text-[30px] font-bold tracking-[-0.02em] text-ink"
-                      >
-                        {block.text}
-                      </h2>
-                    );
-                  }
-                  if (block.type === 'quote') {
-                    return (
-                      <blockquote
-                        key={index}
-                        className="my-9 rounded-[20px] bg-purple-200 px-7 py-6"
-                      >
-                        <p className="m-0 font-display text-[23px] leading-[1.4] font-semibold text-ink">
-                          {block.text}
-                        </p>
-                      </blockquote>
-                    );
-                  }
-                  return (
-                    <p key={index} className="mt-0 mb-6">
-                      {block.text}
-                    </p>
-                  );
-                })}
-              </div>
+              {/* Rendered and sanitized at build time in lib/markdown.ts; the
+                  typography lives in the `.article` scope in globals.css. */}
+              <div
+                className="article min-w-[280px] max-w-[660px] flex-1"
+                dangerouslySetInnerHTML={{ __html: post.body.html }}
+              />
 
               {toc.length > 0 && (
                 <aside
@@ -264,7 +240,7 @@ function PostPage({ post }: { post: Post }) {
                         href={`#${item.id}`}
                         className="text-[13px] font-semibold text-ink no-underline hover:text-purple"
                       >
-                        {item.toc}
+                        {item.text}
                       </a>
                     ))}
                   </div>

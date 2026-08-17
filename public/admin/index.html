@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The writing desk is not for search engines. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <title>The Other Guys — Writing desk</title>
+    <!--
+      /admin is a rewrite onto /admin/index.html, so the browser's address bar
+      has no trailing slash and a relative "config.yml" would resolve to the
+      site root. Point at it absolutely instead.
+    -->
+    <link href="/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+  </head>
+  <body>
+    <!--
+      Sveltia CMS, pinned. It reads and writes the markdown in content/posts
+      straight to GitHub over the OAuth handshake in app/api/auth + callback,
+      so there's no third-party service in the loop. Not an ES module: the
+      bundle warns if you add type="module", and it needs no stylesheet.
+    -->
+    <script src="https://unpkg.com/@sveltia/cms@0.191.1/dist/sveltia-cms.js"></script>
+  </body>
+</html>

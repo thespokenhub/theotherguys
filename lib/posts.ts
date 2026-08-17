@@ -1,11 +1,16 @@
 /**
- * Blog data, ported from project/posts.js. This is the schema the eventual CMS
- * (git-markdown, per HANDOFF.md) replaces: until then the posts live here.
+ * Blog data. Posts are markdown files in `content/posts`, edited in the browser
+ * through Sveltia CMS at /admin and read here at build time — the git-markdown
+ * option HANDOFF.md leans on. Pillars and authors stay in code: they're
+ * structure, not content, and they change about once a year.
  *
- * Only one post has its full body written (`good-writing-work`, the article
- * the Blog-Post prototype was designed around). The rest render a stub body
- * until their content is moved over from the old blog.
+ * Posts without a body render the "still in the moving boxes" card until their
+ * content is migrated from the old blog.
  */
+import fs from 'node:fs';
+import path from 'node:path';
+import matter from 'gray-matter';
+import { countWords, readingMinutes, renderMarkdown, type Heading } from './markdown';
 
 export type PillarKey = 'seo' | 'ai' | 'content' | 'craft' | 'notice' | 'us';
 
@@ -127,18 +132,16 @@ export const AUTHORS: Record<AuthorKey, Author> = {
   },
 };
 
-/** Blocks a post body is written in. The CMS maps markdown onto these. */
-export type BodyBlock =
-  | { type: 'p'; text: string }
-  | { type: 'h2'; id: string; text: string; toc: string }
-  | { type: 'quote'; text: string };
-
+/** A rendered post body. Empty markdown means the post has no body yet. */
 export type PostBody = {
   /** Hero illustration caption, mono uppercase. */
   heroCaption: string;
   /** Handwritten aside under the table of contents. */
   tocNote: string;
-  blocks: BodyBlock[];
+  /** Sanitized HTML, rendered into the `.article` scope in globals.css. */
+  html: string;
+  /** Every heading in the body, in document order. "THE MAP" uses the `##`s. */
+  headings: Heading[];
 };
 
 export type Post = {
@@ -146,7 +149,7 @@ export type Post = {
   pillar: PillarKey;
   type?: 'report';
   title: string;
-  /** Title split for the squiggle; only set on posts with a written body. */
+  /** Headline split for the squiggle; only set when `squiggle` is filled in. */
   titleParts?: { t1: string; word: string; t2: string };
   blurb: string;
   authorKey: AuthorKey;
@@ -159,236 +162,118 @@ export type Post = {
   body?: PostBody;
 };
 
-export const POSTS: Post[] = [
-  {
-    slug: 'between-us-retainers',
-    image: '/images/posts/between-us-retainers.webp',
-    pillar: 'us',
-    title: 'Between Us, Most Retainers Are Rent',
-    blurb:
-      'Between us, a lot of monthly fees buy a standing meeting, not standing work. Here’s how to tell which one you’re paying for.',
-    authorKey: 'nelson',
-    date: 'Jul 22, 2026',
-    mins: 4,
-    ill: 'Pencil drawing: two chairs leaned close together, one whispering to the other',
-  },
-  {
-    slug: 'ai-citations',
-    image: '/images/posts/ai-citations.webp',
-    pillar: 'ai',
-    type: 'report',
-    title: 'What AI Search Cites (We Checked 200 Answers)',
-    blurb:
-      'We asked ChatGPT, Perplexity, and Google AI Mode the questions your buyers ask, then traced every citation. The pattern is uncomfortable for most content teams.',
-    authorKey: 'tim',
-    date: 'Jul 14, 2026',
-    mins: 7,
-    ill: 'Pencil drawing: a detective with a magnifying glass inspecting a robot’s footnotes',
-  },
-  {
-    slug: 'notice-empty-state',
-    image: '/images/posts/notice-empty-state.webp',
-    pillar: 'notice',
-    title: 'Did You Notice What Stripe Hides in Its 404 Page?',
-    blurb:
-      'A dead end most teams ignore, turned into the most charming page on the site. We break down why it works and what everyone else leaves on the table.',
-    authorKey: 'nelson',
-    date: 'Jun 30, 2026',
-    mins: 4,
-    ill: 'Pencil drawing: a magnifying glass hovering over the corner of a webpage',
-  },
-  {
-    slug: 'good-writing-work',
-    image: '/images/posts/good-writing-work.webp',
-    pillar: 'craft',
-    title: 'Good Writing Was Always This Much Work',
-    titleParts: { t1: 'Good writing was always this much ', word: 'work', t2: '' },
-    blurb: 'AI didn’t change the rules. It just made it impossible to pretend we were following them.',
-    authorKey: 'tim',
-    date: 'Jun 17, 2026',
-    mins: 5,
-    ill: 'Pencil drawing: a writer buried under drafts at a desk with a grandfather clock',
-    body: {
-      heroCaption: 'THE PROCESS, ACCURATELY DEPICTED.',
-      tocNote: 'no wrong turns, it’s 5 min',
-      blocks: [
-        {
-          type: 'p',
-          text: 'There’s a version of the documentary “Jiro Dreams of Sushi” where the sushi master explains why his apprentices spend years on rice alone. Nobody watches that scene and thinks the apprentice is being cheated. We understand that the boring reps are where the good stuff comes from. Then we go back to our content calendars and demand eight publish-ready drafts a week.',
-        },
-        {
-          type: 'p',
-          text: 'Most of the apprentices quit. The ones who stayed learned to cook rice better than anyone alive. Content teams built the opposite system: nobody quits, nothing gets learned, and the rice is from a vending machine.',
-        },
-        { type: 'h2', id: 'chatgpt', text: 'Then ChatGPT showed up', toc: 'Then ChatGPT showed up' },
-        {
-          type: 'p',
-          text: 'And boy, did it reveal what we’d been doing all along. Most templates were templates for years before a model could fill them in. If you read the previous article, you know something content-ish is dead. And it didn’t die in December. It was probably never alive in the first place.',
-        },
-        {
-          type: 'p',
-          text: 'Now comes the harder question. You do the work and check your traffic. The answer is uncomfortable and true at the same time: the reader can tell. Machines can tell too, which is new, and which is why the shortcut era is closing.',
-        },
-        {
-          type: 'quote',
-          text: 'The exercise itself is simple but the honesty required is brutal. Open your blog. Pick your top 20 posts by traffic. Read them as a buyer would.',
-        },
-        {
-          type: 'h2',
-          id: 'reality',
-          text: 'First, you need to see reality clearly',
-          toc: 'Seeing reality clearly',
-        },
-        {
-          type: 'p',
-          text: 'Out of 20 published posts from a typical 2023 to 2025 archive, I could honestly say maybe eight of them contained anything ChatGPT couldn’t replicate. Maybe. And I’m being generous because I wrote some of them and my ego was doing backflips trying to convince me they were special.',
-        },
-        {
-          type: 'p',
-          text: 'For each post, ask: could ChatGPT write this? Not “could it produce these exact words.” Could it produce the same value to the reader? If the answer is yes, the post was a commodity the day you published it. The traffic it earned was rented, and the rent is going up.',
-        },
-        {
-          type: 'h2',
-          id: 'unaiable',
-          text: 'Making pieces “un-AI-able”',
-          toc: 'Making it un-AI-able',
-        },
-        {
-          type: 'p',
-          text: 'What survives: original data from your product, lessons from client work with numbers attached, a named expert’s reasoning on a live decision, and opinions somebody would argue with. What a model can’t fake is having been there. That’s the whole strategy, and yes, it’s more work. It was always this much work. We just stopped pretending otherwise.',
-        },
-      ],
+/* ── Reading the markdown ────────────────────────────────────────────────── */
+
+const POSTS_DIR = path.join(process.cwd(), 'content/posts');
+
+/** "Jun 17, 2026", the format the whole site's meta lines are built around. */
+const DATE = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
+/** Drafts are visible while writing and while previewing, never in production. */
+const SHOW_DRAFTS = process.env.NODE_ENV !== 'production';
+
+const fail = (file: string, why: string): never => {
+  throw new Error(`content/posts/${file}: ${why}`);
+};
+
+const text = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
+
+/**
+ * Where the squiggle goes. Prefers a whole-word hit so a squiggle of "us"
+ * doesn't underline the "us" inside "because", and tolerates a word carrying
+ * its own punctuation ("less,") the way the case-study headlines do.
+ */
+function splitHeadline(headline: string, squiggle: string, file: string) {
+  if (!squiggle) return undefined;
+  const escaped = squiggle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const whole = new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'u');
+  const at = whole.exec(headline)?.index ?? headline.indexOf(squiggle);
+  if (at < 0) fail(file, `squiggle "${squiggle}" is not in the headline "${headline}"`);
+  return {
+    t1: headline.slice(0, at),
+    word: squiggle,
+    t2: headline.slice(at + squiggle.length),
+  };
+}
+
+/** A post plus the two frontmatter facts only the loader below needs. */
+type Entry = { post: Post; draft: boolean; stamp: number };
+
+function readPost(file: string): Entry {
+  const { data, content } = matter(fs.readFileSync(path.join(POSTS_DIR, file), 'utf8'));
+  const slug = file.replace(/\.md$/, '');
+
+  /* Pillar hubs and posts share the /blog/ namespace, so a post named after a
+     pillar would quietly shadow that hub's page. Catch it at build time. */
+  if (slug in PILLARS) fail(file, `slug "${slug}" collides with the ${slug} pillar hub`);
+
+  const title = text(data.title) || fail(file, 'needs a title');
+  const pillar = text(data.pillar);
+  if (!(pillar in PILLARS)) fail(file, `pillar "${pillar}" is not one of ${PILLAR_KEYS.join(', ')}`);
+  const author = text(data.author);
+  if (!(author in AUTHORS)) {
+    fail(file, `author "${author}" is not one of ${Object.keys(AUTHORS).join(', ')}`);
+  }
+
+  /* The datetime widget hands back a string; YAML turns a bare date into a
+     Date. Both land on the same "Jun 17, 2026". */
+  const stamp = new Date(data.date instanceof Date ? data.date : text(data.date));
+  if (Number.isNaN(stamp.valueOf())) fail(file, `date "${String(data.date)}" is not a date`);
+
+  const ill = text(data.ill) || fail(file, 'needs an illustration description (it is the alt text)');
+  const body = content.trim() ? renderMarkdown(content) : undefined;
+
+  /* Word count once a post has a body; the frontmatter override is what keeps
+     the not-yet-migrated stubs showing their real length. */
+  const override = typeof data.mins === 'number' && data.mins > 0 ? data.mins : 0;
+  const mins = override || (body ? readingMinutes(countWords(content)) : 1);
+
+  return {
+    draft: data.draft === true,
+    stamp: stamp.valueOf(),
+    post: {
+      slug,
+      pillar: pillar as PillarKey,
+      ...(data.report === true ? { type: 'report' as const } : {}),
+      title,
+      titleParts: splitHeadline(text(data.headline) || title, text(data.squiggle), file),
+      blurb: text(data.blurb),
+      authorKey: author as AuthorKey,
+      date: DATE.format(stamp),
+      mins,
+      ill,
+      ...(text(data.image) ? { image: text(data.image) } : {}),
+      ...(body
+        ? {
+            body: {
+              heroCaption: text(data.caption) || ill.toUpperCase(),
+              tocNote: text(data.note) || `no wrong turns, it’s ${mins} min`,
+              html: body.html,
+              headings: body.headings,
+            },
+          }
+        : {}),
     },
-  },
-  {
-    slug: 'ai-didnt-kill',
-    image: '/images/posts/ai-didnt-kill.webp',
-    pillar: 'ai',
-    title: 'AI Didn’t Kill Good Writing Because There Wasn’t Much to Kill',
-    blurb:
-      'AI made it really obvious how much of our “content marketing” was already a zombie shambling around, moaning “10 tips... must... rank...”',
-    authorKey: 'tim',
-    date: 'Jun 17, 2026',
-    mins: 3,
-    ill: 'Pencil drawing: a friendly robot holding a paintbrush over a pile of identical listicles',
-  },
-  {
-    slug: 'seo-unsexy-fixes',
-    image: '/images/posts/seo-unsexy-fixes.webp',
-    pillar: 'seo',
-    title: 'The Unsexy SEO Fixes That Paid for Themselves in a Quarter',
-    blurb:
-      'No hacks, no schemes. Internal links, titles rewritten for the click, and pruning the pages nobody asked for. The boring stuff, ranked by payback.',
-    authorKey: 'tim',
-    date: 'May 5, 2026',
-    mins: 6,
-    ill: 'Pencil drawing: a plumber tightening pipes underneath a giant search bar',
-  },
-  {
-    slug: 'signs-and-doesnt',
-    image: '/images/posts/signs-and-doesnt.webp',
-    pillar: 'content',
-    title: 'Write for the Person Who Signs, and the One Who Doesn’t',
-    blurb:
-      'Your champion forwards the post. Their CFO reads two paragraphs. Both need to find what they came for.',
-    authorKey: 'nelson',
-    date: 'Apr 22, 2026',
-    mins: 6,
-    ill: 'Pencil drawing: two readers sharing one newspaper, each looking at a different page',
-  },
-  {
-    slug: 'client-first-30',
-    pillar: 'craft',
-    title: 'What We Do When a Client Hires Us',
-    blurb:
-      'A peek into those first 30 days here at The Other Guys. And a breakdown of our favorite client onboarding question.',
-    authorKey: 'nelson',
-    date: 'Jan 30, 2026',
-    mins: 3,
-    ill: 'Pencil drawing: three people huddled over a table labeled “the narrative spine”',
-  },
-  {
-    slug: 'january-dont-publish',
-    image: '/images/posts/january-dont-publish.webp',
-    pillar: 'content',
-    title: 'It’s January. Please Don’t Publish Anything Yet.',
-    blurb: 'Give this a read. It’ll make your January(s) so much better.',
-    authorKey: 'nelson',
-    date: 'Jan 30, 2026',
-    mins: 3,
-    ill: 'Pencil drawing: a typewriter tangled in bare winter branches, page reading “January”',
-  },
-  {
-    slug: 'content-cyborg',
-    image: '/images/posts/content-cyborg.webp',
-    pillar: 'ai',
-    title: 'The Content Cyborg + AI Musings',
-    blurb:
-      'You tried going full human. Then you tried going full robot. Here’s the one thing left that truly wins content for your biz.',
-    authorKey: 'tim',
-    date: 'Jan 30, 2026',
-    mins: 3,
-    ill: 'Pencil drawing: a profile of a head with gears and a pencil where the brain goes',
-  },
-  {
-    slug: 'aeo-manners',
-    pillar: 'seo',
-    title: 'AEO Is Just SEO With Better Manners',
-    blurb:
-      'Answer engines reward the things good editors always did. Clear claims, named sources, actual expertise. The checklist is shorter than the acronym suggests.',
-    authorKey: 'tim',
-    date: 'Nov 12, 2025',
-    mins: 5,
-    ill: 'Pencil drawing: a robot politely holding a door open for a stack of documents',
-  },
-  {
-    slug: 'other-way',
-    image: '/images/posts/other-way.webp',
-    pillar: 'content',
-    title: 'The Other Way: Our Content Strategy',
-    blurb:
-      'Six months ago, Tim and I made a bet that would either validate everything we believed about content marketing or prove us spectacularly wrong.',
-    authorKey: 'nelson',
-    date: 'Oct 7, 2025',
-    mins: 3,
-    ill: 'Pencil drawing: a winding path up a hill with signposts reading “clear strategy, quality, impact”',
-  },
-  {
-    slug: 'case-against-tog',
-    image: '/images/posts/case-against-tog.webp',
-    pillar: 'us',
-    title: 'Between Us, Here’s the Case Against The Other Guys',
-    blurb: 'We’re going to make a strong case for why you shouldn’t hire us.',
-    authorKey: 'nelson',
-    date: 'Oct 7, 2025',
-    mins: 3,
-    ill: 'Pencil drawing: a robot lawyer pointing at a confused jury of doodles',
-  },
-  {
-    slug: 'sacred-rule',
-    image: '/images/posts/sacred-rule.webp',
-    pillar: 'content',
-    title: 'The One Content Marketing Tweak That Can Drive 1,000+ Users (By Breaking a Sacred Rule)',
-    blurb:
-      'Most content advice tells you to “write for your audience.” Here’s why that mindset quietly kills pipeline, and how writing for buyers instead can turn a single blog post into a revenue-generating asset.',
-    authorKey: 'nelson',
-    date: 'Jul 25, 2025',
-    mins: 3,
-    ill: 'Pencil drawing: a stone tablet of “sacred rules” cracking, users pouring out',
-  },
-  {
-    slug: 'why-here',
-    image: '/images/posts/why-here.webp',
-    pillar: 'craft',
-    title: 'Why The &#!$ Are We Here?',
-    blurb:
-      'Up until a week ago, we weren’t an agency. Nine sprint sessions and sleepless nights later, we launched The Other Guys.',
-    authorKey: 'nelson',
-    date: 'Jul 25, 2025',
-    mins: 3,
-    ill: 'Pencil drawing: two figures nailing a hand-painted “open” sign above a door',
-  },
-];
+  };
+}
+
+/**
+ * Newest first, which is the order the index, the pillar hubs, and the author
+ * pages all render in. Two posts on the same day fall back to the time in the
+ * frontmatter, then to the slug, so the order never depends on the filesystem.
+ */
+export const POSTS: Post[] = fs
+  .readdirSync(POSTS_DIR)
+  .filter((file) => file.endsWith('.md'))
+  .map(readPost)
+  .filter((entry) => SHOW_DRAFTS || !entry.draft)
+  .sort((a, b) => b.stamp - a.stamp || a.post.slug.localeCompare(b.post.slug))
+  .map((entry) => entry.post);
 
 export const getPost = (slug: string) => POSTS.find((post) => post.slug === slug);
 

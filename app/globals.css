@@ -107,6 +107,182 @@
   }
 }
 
+@layer components {
+  /* ── Post body ────────────────────────────────────────────────────────────
+     The one place on the site where the markup is authored, not written in
+     JSX, so the typography lives here instead of on utility classes. These
+     values are the ones the Blog-Post prototype set inline; changing them
+     changes every post. */
+  .article {
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--color-body);
+    /* A pasted URL is the one thing an author can drop in that's wider than a
+       320px phone. Break it rather than let the page scroll sideways. */
+    overflow-wrap: break-word;
+  }
+
+  .article > :first-child {
+    margin-top: 0;
+  }
+
+  .article p {
+    margin: 0 0 24px;
+  }
+
+  .article h2,
+  .article h3,
+  .article h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    /* No line-height: 30px display type at the body's 1.75 is the spacing the
+       prototype had, because the heading inherited it there too. */
+    margin: 44px 0 16px;
+    /* Anchored headings land under the sticky nav without it. */
+    scroll-margin-top: 96px;
+  }
+
+  .article h2 {
+    font-size: 30px;
+  }
+
+  .article h3 {
+    font-size: 23px;
+    margin-top: 36px;
+  }
+
+  .article h4 {
+    font-size: 19px;
+    margin-top: 32px;
+  }
+
+  .article blockquote {
+    margin: 36px 0;
+    padding: 24px 28px;
+    border-radius: 20px;
+    background: var(--color-purple-200);
+  }
+
+  .article blockquote p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 23px;
+    line-height: 1.4;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .article ul,
+  .article ol {
+    margin: 0 0 24px;
+    padding-left: 24px;
+  }
+
+  .article ul {
+    list-style: disc;
+  }
+
+  .article ol {
+    list-style: decimal;
+  }
+
+  .article li {
+    margin-bottom: 8px;
+  }
+
+  .article li > ul,
+  .article li > ol {
+    margin: 8px 0 0;
+  }
+
+  /* Color is never the only signal (HANDOFF.md quality floor). */
+  .article a {
+    color: var(--color-purple);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .article strong {
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .article img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 32px 0;
+    border-radius: 20px;
+  }
+
+  .article figure {
+    margin: 32px 0;
+  }
+
+  .article figure img {
+    margin: 0;
+  }
+
+  .article figcaption {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  .article hr {
+    margin: 40px 0;
+    border: 0;
+    border-top: 2px solid var(--color-hairline);
+  }
+
+  .article code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--color-purple-200);
+    border-radius: 6px;
+    padding: 2px 6px;
+  }
+
+  /* Code and tables are the two blocks that can't be reflowed, so they scroll
+     inside themselves instead of widening the page. */
+  .article pre {
+    margin: 0 0 24px;
+    padding: 20px;
+    overflow-x: auto;
+    border: 2px solid var(--color-ink);
+    border-radius: 14px;
+    background: var(--color-cream-100);
+  }
+
+  .article pre code {
+    background: none;
+    padding: 0;
+  }
+
+  .article table {
+    display: block;
+    overflow-x: auto;
+    margin: 0 0 24px;
+    font-size: 16px;
+    border-collapse: collapse;
+  }
+
+  .article th,
+  .article td {
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--color-hairline);
+  }
+
+  .article th {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+  }
+}
+
 @layer utilities {
   /* Scroll-linked entrances for the case-study cards. Progressive enhancement:
      browsers without animation-timeline just get the finished state. */
