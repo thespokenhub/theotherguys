@@ -10,9 +10,13 @@ backend:
   branch: main
   # The OAuth handshake is ours: app/api/auth starts it, app/api/callback
   # finishes it. base_url must be the origin the GitHub OAuth App's callback
-  # URL points at — change both together if the domain ever changes. Leaving it
-  # on the live domain is deliberate: /admin then works from a laptop too.
-  base_url: https://deotherguys.com
+  # URL points at — change both together if the domain ever changes.
+  #
+  # This is the project's stable production alias, not a per-deployment URL,
+  # and naming it here is deliberate twice over: /admin works from a laptop or
+  # a branch preview because the sign-in pop-up always lands back on the one
+  # origin GitHub has a callback registered for.
+  base_url: https://theotherguys-xi.vercel.app
   auth_endpoint: api/auth
   commit_messages:
     create: 'Add post: {{slug}}'
